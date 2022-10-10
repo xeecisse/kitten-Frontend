@@ -3,9 +3,12 @@ import {  Button, Card, CardBody, CardHeader, Col,  FormGroup,  Input, Label, Ro
 import bg from "./img/bg.jpg";
 import SelectInput from './components/UI/SelectInput'
 import "./Signup.css";
+import { useNavigate } from "react-router";
 
 
 function Signup () {
+  const navigate = useNavigate()
+
   return (
     
      <div
@@ -155,7 +158,14 @@ function Signup () {
           placeholder="Bio"
           />
       </Col> */}
-      <Col md={{ size: '6', offset: '9' }}>
+  
+                  {/* <div className="my-2"> 
+          
+          <Button style={{width:'100%',backgroundColor:'rgb(35, 13, 54)',border:'none'}}   className="mt-2">Continue witch Google</Button>
+          <Button style={{width:'100%', backgroundColor:'rgb(35, 13, 54)',border:'none'}}   className="mt-2">Continue witch Facebook</Button>
+          <Button style={{width:'100%', backgroundColor:'rgb(35, 13, 54)',border:'none'}}   className="mt-2">Continue witch Instagram</Button>
+            </div> */}
+            <Col md={{ size: '6', offset: '9' }}>
                     <Button
                       className="mt-2"
                       color="success"
@@ -180,7 +190,8 @@ function Signup () {
                             }}
                           >
                             Already have an account?{" "}
-                            <span style={{ cursor: "pointer" }}>
+                            <span style={{ cursor: "pointer" }}   onClick={() => navigate('/Login')} >
+                              
                               Login here!
                             </span>{" "}
                           </p>

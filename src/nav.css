@@ -1,0 +1,89 @@
+/* .active {
+    background-color: red;
+} */
+.logo {
+    width: 200px;
+    height: 200px;
+    margin: 0;
+    padding: 0;
+}
+
+/* .nav-item:active {background-color: rgb(41, 140, 56);} */
+/* .nav-item:hover {background-color: rgb(56, 125, 66); color:#FFFFFF !important} */
+.nav-item {
+    list-style: none;
+    border-radius: 20;
+}
+.avatar {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+.top-bar {
+    padding: 0;
+    margin: 0;
+}
+
+.navbar-main {
+    background-color: rgb(22, 62, 23);
+    /* background-color: rgb(108, 176, 110); */
+    /* padding:10px; */
+}
+
+.title {
+    font-weight: lighter;
+    margin-left: -40px;
+}
+
+.search_field {
+    border: 1px solid grey;
+    background-color: white;
+    border-radius: 5px;
+    height: 40px;
+    padding: 10px;
+    /* margin-left: 10px; */
+    width: 100%;
+    /* background-image: url('../../search.png'); */
+    background-position: 10px 10px;
+    background-size: 20px;
+    background-repeat: no-repeat;
+    padding-left: 40px;
+    display: block;
+}
+
+.dashboard_card {
+    margin-bottom: 10px;
+    border: none;
+    /* borer */
+    transition: 500ms;
+    background-image: linear-gradient(to bottom right, white, rgb(182, 204, 183));
+}
+/* .dashboard_card :hover{
+    background-color: white;
+    border-radius: 5px;
+} */
+
+.dashboard_card_title {
+    color: rgb(22, 62, 23);
+    /* font-weight: bold; */
+    font-size: 20px;
+}
+
+.dashboard_card_count {
+    color: rgb(22, 62, 23);
+    font-weight: bold;
+    font-size: 50px;
+    margin: 0;
+}
+.view{
+    background-color: rgb(22, 62, 23);
+    border-radius: 3px;
+    border: none;
+    padding: 1px 5px;
+    color: white;
+    transition: 500ms;
+}
+.view:hover{
+    background-color: rgb(99, 146, 101);
+}

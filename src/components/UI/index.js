@@ -1,29 +1,29 @@
 import RadioBox from "./RadioBox";
 import RadioGroup from "./RadioGroup";
-import CustomForm from "./CustomForm";
+// import CustomForm from "./CustomForm";
 import StepBar from "./StepBar";
-import TextInput from "./TextInput";
+// import TextInput from "./TextInput";
 import CustomButton from "./CustomButton";
-import SearchBar from "./SearchBar";
+// import SearchBar from "./SearchBar";
 import SelectInput from "./SelectInput";
-import BorderedCard from "./BorderedCard";
+// import BorderedCard from "./BorderedCard";
 import Checkbox from "./CheckBox";
-import CustomTable from "./CustomTable";
+// import CustomTable from "./CustomTable";
 // import SwitchButton from './switch/ToggleSwitch'
 // import alert from "./_customNotification";
 
 export {
     RadioBox,
     RadioGroup,
-    CustomForm,
+    // CustomForm,
     StepBar,
-    TextInput,
+    // TextInput,
     CustomButton,
-    SearchBar,
+    // SearchBar,
     SelectInput,
-    BorderedCard,
+    // BorderedCard,
     Checkbox,
-    CustomTable
+    // CustomTable
     // SwitchButton
     // alert
 };

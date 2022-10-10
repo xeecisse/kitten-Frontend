@@ -2,7 +2,7 @@ import React from 'react'
 // import { ArrowLeft } from 'react-feather'
 import { useNavigate } from 'react-router-dom'
 import { CustomButton } from '.'
-import { themeClass } from '../../variables'
+// import { themeClass } from '../../variables'
 
 function BackButton({
   text = 'Click to go back',
@@ -15,7 +15,7 @@ function BackButton({
     <CustomButton
       size={size}
       className={`mb-1 ${className}`}
-      style={{backgroundColor:themeClass}}
+      // style={{backgroundColor:themeClass}}
       onClick={() => navigate(-1)}
     >
       <span className="d-flex flex-direction-row align-items-center">

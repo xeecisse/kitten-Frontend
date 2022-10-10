@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "reactstrap";
-import { secondaryColor } from "../../variables";
+// import { secondaryColor } from "../../variables";
 
 function CustomButton(props) {
   return (
@@ -9,7 +9,7 @@ function CustomButton(props) {
       disabled={props.loading || props.disabled}
       // color={props.color || "warning" }
       // style={{color:"white"}}
-      style={{ border: `1px solid ${secondaryColor}`,background: `${secondaryColor}`,color:"white", ...props.style }}
+      // style={{ border: `1px solid ${secondaryColor}`,background: `${secondaryColor}`,color:"white", ...props.style }}
 
     >
       {props.loading && (

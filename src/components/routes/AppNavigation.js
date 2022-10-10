@@ -3,7 +3,9 @@ import { useRoutes } from 'react-router';
 import Signup from '../../Signup';
 // import MenuIndex from '../../Pages/Sidebar/MenuIndex';
 // import Welcome from '../../Pages/Welcome';
-// import Login from '../../Login';
+import Login from '../../Login';
+import GeneralModels from '../../GeneralModels';
+import Model from '../../Model';
 
 
 
@@ -13,17 +15,18 @@ function AppNavigation() {
   let element = useRoutes([
     {
       path: '/',
+      
       element: <Signup />,
     },
-    // {
-    //   path: '/welcome',
-    //   element: <MenuIndex />,
+    {
+      path: '/Login',
+      element: <Login />,
 
-    //   children: [
-    //     { path: '/welcome', element: <Welcome /> },
-      
-    //   ],
-    // },
+    },
+    {
+      path: '/GeneralModels',
+      element: <GeneralModels />,
+    },
   ]);
   return element;
 }

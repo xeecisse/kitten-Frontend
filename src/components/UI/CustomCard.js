@@ -1,57 +1,61 @@
-import React from 'react'
-// import { useSelector } from 'react-redux'
-import { Card, CardBody, CardFooter, CardHeader } from 'reactstrap'
-import { themeClass } from '../../variables'
-import BackButton from './BackButton'
+import React from "react";
+// import { useSelector } from "react-redux";
+import { Card, CardBody, CardFooter, CardHeader } from "reactstrap";
+import BackButton from "./BackButton";
 
 function CustomCard(props) {
-  const { header, footer, back, headerRight, icon } = props
-  // const activeBusiness = useSelector((state) => state.app.theme)
+  const { header, footer, back, headerRight } = props;
 
   return (
     <Card
-      className={`${props.container} shadow`}
+      className={`${props.container}`}
       // outline
       style={{
-        // borderWidth: 1,
+        ...props.style,
+        borderWidth: 1,
         // borderColor: activeBusiness.primary_color,
-        // borderColor:themeClass,
-        // borderStyle: 'solid',
-        border: 'none'
+        borderStyle: "solid",
       }}
     >
       {header && (
         <CardHeader
           // className={`py-2`}
           style={{
-            // borderBottom: `1px solid ${themeClass}`,
-            // backgroundColor: themeClass,
-            border: 'none',
-            color: "black",
-            paddingTop: '.4rem',
-            paddingBottom: '.4rem',
-            backgroundColor: 'white'
+            // borderBottom: `1px solid ${activeBusiness.primary_color}`,
+            // backgroundColor: activeBusiness.primary_color,
+            // color: activeBusiness.secondary_color,
+            paddingTop: ".4rem",
+            paddingBottom: ".4rem",
           }}
-          className={back ? 'm-0 align-items-center' : 'm-0'}
+          className={back ? "row m-0 align-items-center" : ""}
         >
           {back && (
             <div className="col-md-3">
-              <BackButton text=' Back' />
+              <BackButton text="Go Back" />
             </div>
           )}
-          <h5 className={back ? 'col-md-6 text-center text-white' : ''} style={{ fontWeight: '' }}>
-            {icon}{' '}{header}</h5>
+          <h5
+            className={
+              back
+                ? "col-md-6 text-center"
+                : "text-center"
+            }
+          >
+            {header}
+          </h5>
           {/* <div className={back ? 'col-md-6' : ''}>{header}</div> */}
-          {headerRight && <div className="col-md-3">{headerRight}</div>}
+          {headerRight && (
+            <div className="col-md-3">{headerRight}</div>
+          )}
         </CardHeader>
       )}
-      <CardBody className={props.body} style={{ border: 'none' }}>{props.children}</CardBody>
+      <CardBody className={props.body}>{props.children}</CardBody>
       {footer && (
         <CardFooter
           style={{
-            borderBottom: `1px solid ${themeClass}`,
-            backgroundColor: themeClass,
-            color: "black",
+            // borderBottom: `1px solid ${activeBusiness.primary_color}`,
+            // backgroundColor: activeBusiness.primary_color,
+            // color: activeBusiness.secondary_color,
             // paddingTop: '.4rem',
             // paddingBottom: '.4rem',
           }}
@@ -60,7 +64,7 @@ function CustomCard(props) {
         </CardFooter>
       )}
     </Card>
-  )
+  );
 }
 
-export default CustomCard
+export default CustomCard;
