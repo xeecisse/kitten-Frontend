@@ -1,7 +1,7 @@
 import React from "react";
 import {  Button, Card, CardBody, CardHeader, Col,  FormGroup,  Input, Label, Row, Spinner } from "reactstrap";
-import bg from "./img/bg.jpg";
-import SelectInput from './components/UI/SelectInput'
+import bg from "../../img/bg.jpg";
+import SelectInput from '../../components/UI/SelectInput'
 import "./Signup.css";
 import { useNavigate } from "react-router";
 

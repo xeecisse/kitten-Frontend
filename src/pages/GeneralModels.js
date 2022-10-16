@@ -1,5 +1,5 @@
 import React from 'react'
-import { Navigate } from 'react-router'
+import { Navigate, useNavigate } from 'react-router'
 import {
   Button,
   Card,
@@ -13,10 +13,11 @@ import {
 // import { CustomButton, CustomTable } from './components/UI'
 // import CustomCard from './components/UI/CustomCard'
 
-import bg_2 from './img/bg_2.jpg'
-import image_2 from './img/image_2.jpg'
+import bg_2 from '../img/bg_2.jpg'
+import image_2 from '../img/image_2.jpg'
 
 function GeneralModels() {
+  const navigate = useNavigate()
   return (
     <div
       className="m-0"
@@ -70,7 +71,7 @@ function GeneralModels() {
                       backgroundPosition: 'center',
                     }}
                   >
-                    <Button onClick={() => Navigate('/Model')}>
+                    <Button onClick={() => navigate('/Model')}>
                       view model
                     </Button>
                   </Card>
