@@ -1,0 +1,89 @@
+{
+    "models": [
+        {
+            "id":"1",
+            "username": "miss_independent",
+            "fullname": "Zainab Yakub",
+            "age": 20,
+            "location": "Kano",
+            "profile_image": "https://scontent.fabv2-1.fna.fbcdn.net/v/t39.30808-6/216478886_819350998944468_3144265965921160848_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeES8iW-kqb5yRz_P5ZsmzVr_4UY0Mr6txD_hRjQyvq3EPMrR4sGjoThl9FiyQqzNzQpi82TgNQ_ZGirydsgGLVX&_nc_ohc=WMP8DxZRpx8AX8XSyBJ&_nc_zt=23&_nc_ht=scontent.fabv2-1.fna&oh=00_AT83n_4UQdVPRjfeDmg_tpNGI8KZgnV-EYASxi-grfZgmA&oe=635971D2",
+            "gallery": [
+                "https://scontent.fabv2-2.fna.fbcdn.net/v/t39.30808-6/256897396_898760837670150_7811494519725242415_n.jpg?stp=dst-jpg_p960x960&_nc_cat=110&ccb=1-7&_nc_sid=730e14&_nc_eui2=AeH4N5sNszNgvVno-zeDgCwl4_8xXVwVW2jj_zFdXBVbaNzarmrjK02oYsuKqIoalp4PhGFx991EA58t9c-buSiw&_nc_ohc=wlP3Wud6-DkAX8QdX-q&tn=WKipd99-ZJvDzUTT&_nc_zt=23&_nc_ht=scontent.fabv2-2.fna&oh=00_AT9ZEiIkOxSZ-q-mqdVUJFLYpaW2YwDKFpvfMackqqBAjQ&oe=6359E12F",
+                "https://scontent.fabv2-1.fna.fbcdn.net/v/t39.30808-6/257373343_898760847670149_3051909353048624589_n.jpg?stp=dst-jpg_p960x960&_nc_cat=104&ccb=1-7&_nc_sid=730e14&_nc_eui2=AeHN0yVCxWbRnWrfTLO7KXwtSghLIw8wV6RKCEsjDzBXpHLcGtxNenHb3Da3HQrnbKxXp0UWWECUwVoyP4r2EbpX&_nc_ohc=wOjNd0XfdL0AX_allNC&tn=WKipd99-ZJvDzUTT&_nc_zt=23&_nc_ht=scontent.fabv2-1.fna&oh=00_AT-XcTPbVdx_hA3VspmorBKBQieGnESWhlVzwOO5WhkfVg&oe=635A16A5",
+                "https://scontent.fabv2-2.fna.fbcdn.net/v/t39.30808-6/249692726_887948955418005_9042683172307170980_n.jpg?stp=dst-jpg_p960x960&_nc_cat=109&ccb=1-7&_nc_sid=730e14&_nc_eui2=AeEqHhRE-gtSNmoC43-cX3LSZoZ7qlKvUm1mhnuqUq9Sbd5f_6rDWCx-2YPr_ZsJTz5lrDa2uGVPfqefSY40HRB-&_nc_ohc=IgmgBo3q5rgAX88BLf8&_nc_zt=23&_nc_ht=scontent.fabv2-2.fna&oh=00_AT8QROai6go3W0-4iHgBmr4G_kK3ZtkDcxqcDBL7-DJHJw&oe=635A6DCB",
+                "https://scontent.fabv2-2.fna.fbcdn.net/v/t1.6435-9/177487801_777717546441147_6320117026362606916_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=730e14&_nc_eui2=AeGlEAFF33wguh4SvpPyVlhCkrqH2Gdoz5SSuofYZ2jPlOBnt40vKE1TyQLw1d3lyXYFbaQ-Iz4h4xTB5GjSPKfy&_nc_ohc=01A7wKJBTt4AX9mZq0f&_nc_ht=scontent.fabv2-2.fna&oh=00_AT-p8hfeTnK21i7MBRz06qde0jdqWCq903OgTOVBoT7e-Q&oe=63792BCD",
+                "https://scontent.fabv2-1.fna.fbcdn.net/v/t1.6435-9/158720462_748287126050856_8394339290016058756_n.jpg?stp=dst-jpg_s1080x2048&_nc_cat=104&ccb=1-7&_nc_sid=8bfeb9&_nc_eui2=AeEgvRCXpYoqft_NDRjJSIGMkh_b3n9cDr6SH9vef1wOvh6FYyn5WcHlgxe-J4wfyW2ZZvVJn3q-pfgzqoCYy-dE&_nc_ohc=skIrZjuMFOwAX9RZfhG&_nc_ht=scontent.fabv2-1.fna&oh=00_AT9wfwzaARDG51cKMl82N5bdy3gf37EAIaNXept-OaXqrQ&oe=637BA410"
+            ],
+            "portfolio": [
+                {"image_url":"https://scontent.fabv2-2.fna.fbcdn.net/v/t1.6435-9/195727132_807994900080078_3358282307700747435_n.jpg?stp=dst-jpg_p960x960&_nc_cat=109&ccb=1-7&_nc_sid=730e14&_nc_eui2=AeFBAn69YtKWbgFbegpXvia5berbnO3CKdBt6tuc7cIp0BDKOBXk0_mNflYb6ZlDK5xup4VmCTJoUoEOy2FshaSZ&_nc_ohc=HK3GVJzvKFgAX-yq6Lx&_nc_ht=scontent.fabv2-2.fna&oh=00_AT_J_KBm4LamNZM9HoC5VmI5SKcYI9kDcKmDvdaWlNFVig&oe=637BDC6F", "title": "Face of Divas (2022)", "subtitle": "Azman Event Center"},
+                {"image_url":"https://scontent.fabv2-2.fna.fbcdn.net/v/t1.6435-9/181305024_782350959311139_1864918666173058448_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=730e14&_nc_eui2=AeFxdvNMQ8IJxvEyZrliUdMI0bn-5emdaXPRuf7l6Z1pc-7hUDqELmghSlkhdXVPjLLcYXINkoQpKI2ORruAEDTn&_nc_ohc=7l5xfWSbj_YAX9VGyFl&_nc_ht=scontent.fabv2-2.fna&oh=00_AT903okdjv-Gl-ZoZKyg3FKznvwPfd2DAulGPYFStBb2OQ&oe=6379D2E7", "title": "Face of Divas (2021)", "subtitle": "The Afficient Event Center"},
+                {"image_url":"https://scontent.fabv2-1.fna.fbcdn.net/v/t1.6435-9/181912510_782350502644518_3336896668642278690_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=730e14&_nc_eui2=AeEMilVacvD84hb5HXh_j6Hy-oaGi1QuoaD6hoaLVC6hoAxxg-IpKH_-wKBHQttF5_FOGArDwE2yDTchEobl_7DR&_nc_ohc=Jy5uW0bwqxoAX-SuK36&tn=WKipd99-ZJvDzUTT&_nc_ht=scontent.fabv2-1.fna&oh=00_AT8eZWqY_1qTCCCuNNPaLNsLmSqZiDvkS-vPS7QxmWAGEA&oe=63792CB4", "title": "Face of Divas (2020)", "subtitle": "Bristol Palace, Kano"},
+                {"image_url":"https://scontent.fabv2-2.fna.fbcdn.net/v/t1.6435-9/180208087_777717849774450_5018084220612273134_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=730e14&_nc_eui2=AeFn65ZkvWvDo2R6FOM76mDLCH8gnNUrNkAIfyCc1Ss2QPnfHEHW_9KXJg69qVcDgt24_I3PPYuCj9MleekPMMSI&_nc_ohc=mOOBYCUY_0MAX8bA-bG&tn=WKipd99-ZJvDzUTT&_nc_ht=scontent.fabv2-2.fna&oh=00_AT88W5tbU5rOdUCheyCv9AX3n2Mgdcu5bLfm7rprrWHftA&oe=6379C0BA", "title": "Face of Divas (2019)", "subtitle": "Ammar National"}
+            ],
+            "gender": "Female"
+        },
+        {
+            "id":"2",
+            "username": "master_sun",
+            "fullname": "Mustapha Issa Toyin",
+            "age": 22,
+            "location": "Niger",
+            "profile_image": "https://images.squarespace-cdn.com/content/v1/5907fca529687f9f3df47af3/1529433571639-OGV1ZNDJ5REXO21MG9E5/_LAP1518.jpg",
+            "gallery": [
+                "https://formatprod.wpengine.com/wp-content/uploads/harm-van-den-dorpel-edit.jpg",
+                "https://formatprod.wpengine.com/wp-content/uploads/petra.jpg",
+                "https://formatprod.wpengine.com/wp-content/uploads/louisa-edit-2.jpg",
+                "https://formatprod.wpengine.com/wp-content/uploads/ella-goerner.jpg",
+                "https://www.format.com/wp-content/uploads/food_photography_cover_barry_kirn.jpg"
+            ],
+            "portfolio": [
+                {"image_url": "https://formatprod.wpengine.com/wp-content/uploads/cta-footer-14.png", "title": "Title", "subtitle": "SUB"},
+                {"image_url": "https://formatprod.wpengine.com/wp-content/uploads/header-13.png", "title": "Title", "subtitle": "SUB"},
+                {"image_url": "https://www.format.com/wp-content/uploads/jill-schweber.jpg.webp", "title": "Title", "subtitle": "SUB"},
+                {"image_url": "https://www.format.com/wp-content/uploads/ux_designer_portfolio_ideas.jpg.webp", "title": "Title", "subtitle": "SUB"}
+            ]
+        },
+        {
+            "id":"3",
+            "username": "frank_edward",
+            "fullname": "Sadiq Haruna",
+            "age": 21,
+            "location": "Edo",
+            "profile_image": "https://scontent.fabv2-1.fna.fbcdn.net/v/t39.30808-6/306729190_479741314065102_1551611644461798213_n.jpg?stp=dst-jpg_p960x960&_nc_cat=102&ccb=1-7&_nc_sid=8bfeb9&_nc_eui2=AeG8M9WEvmVVEKBk-rr_j-hbqTPIl-Z7W6KpM8iX5ntboqUzoWUmVD1LqTVueFBNgPjo_n4y_zZerrGTdyQBL0SW&_nc_ohc=LqjqNZsViCsAX-N3jBM&_nc_zt=23&_nc_ht=scontent.fabv2-1.fna&oh=00_AT9tSf5PlBW5UNQ79woG6na2gwio2ilI45OuWItLvXA5vA&oe=635AFFCE ",
+            "gallery": [
+                "https://formatprod.wpengine.com/wp-content/uploads/harm-van-den-dorpel-edit.jpg",
+                "https://formatprod.wpengine.com/wp-content/uploads/petra.jpg",
+                "https://formatprod.wpengine.com/wp-content/uploads/louisa-edit-2.jpg",
+                "https://formatprod.wpengine.com/wp-content/uploads/ella-goerner.jpg",
+                "https://www.format.com/wp-content/uploads/food_photography_cover_barry_kirn.jpg"
+            ],
+            "portfolio": [
+                {"image_url": "https://formatprod.wpengine.com/wp-content/uploads/cta-footer-14.png", "title": "Title", "subtitle": "SUB"},
+                {"image_url": "https://formatprod.wpengine.com/wp-content/uploads/header-13.png", "title": "Title", "subtitle": "SUB"},
+                {"image_url": "https://www.format.com/wp-content/uploads/jill-schweber.jpg.webp", "title": "Title", "subtitle": "SUB"},
+                {"image_url": "https://www.format.com/wp-content/uploads/ux_designer_portfolio_ideas.jpg.webp", "title": "Title", "subtitle": "SUB"}
+            ]
+        },
+        {
+            "id":"4",
+            "username": "nagudu",
+            "fullname": "Halifa Nagudu",
+            "age": 24,
+            "location": "Edo",
+            "profile_image": "https://scontent.fabv2-1.fna.fbcdn.net/v/t39.30808-6/306729190_479741314065102_1551611644461798213_n.jpg?stp=dst-jpg_p960x960&_nc_cat=102&ccb=1-7&_nc_sid=8bfeb9&_nc_eui2=AeG8M9WEvmVVEKBk-rr_j-hbqTPIl-Z7W6KpM8iX5ntboqUzoWUmVD1LqTVueFBNgPjo_n4y_zZerrGTdyQBL0SW&_nc_ohc=LqjqNZsViCsAX-N3jBM&_nc_zt=23&_nc_ht=scontent.fabv2-1.fna&oh=00_AT9tSf5PlBW5UNQ79woG6na2gwio2ilI45OuWItLvXA5vA&oe=635AFFCE ",
+            "gallery": [
+                "https://formatprod.wpengine.com/wp-content/uploads/harm-van-den-dorpel-edit.jpg",
+                "https://formatprod.wpengine.com/wp-content/uploads/petra.jpg",
+                "https://formatprod.wpengine.com/wp-content/uploads/louisa-edit-2.jpg",
+                "https://formatprod.wpengine.com/wp-content/uploads/ella-goerner.jpg",
+                "https://www.format.com/wp-content/uploads/food_photography_cover_barry_kirn.jpg"
+            ],
+            "portfolio": [
+                {"image_url": "https://formatprod.wpengine.com/wp-content/uploads/cta-footer-14.png", "title": "Title", "subtitle": "SUB"},
+                {"image_url": "https://formatprod.wpengine.com/wp-content/uploads/header-13.png", "title": "Title", "subtitle": "SUB"},
+                {"image_url": "https://www.format.com/wp-content/uploads/jill-schweber.jpg.webp", "title": "Title", "subtitle": "SUB"},
+                {"image_url": "https://www.format.com/wp-content/uploads/ux_designer_portfolio_ideas.jpg.webp", "title": "Title", "subtitle": "SUB"}
+            ]
+        }
+    ]
+}

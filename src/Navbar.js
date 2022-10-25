@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router';
+import React, { useState } from "react";
+import { useNavigate } from "react-router";
 import {
   Collapse,
   Navbar,
@@ -13,10 +13,11 @@ import {
   DropdownMenu,
   DropdownItem,
   NavbarText,
-} from 'reactstrap';
+  Input,
+} from "reactstrap";
 
 function NavbarComponent(args) {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
@@ -24,21 +25,43 @@ function NavbarComponent(args) {
   return (
     <div>
       <Navbar {...args}>
-        <NavbarBrand href="/"  className="l">laLoona</NavbarBrand>
+        <NavbarBrand href="/" className="l">
+          laloona
+        </NavbarBrand>
+
+        <div className="row mx-0">
+          <Input
+            className="form-control my-1 col-md-12"
+            placeholder="Search for model"
+          />
+        </div>
         <NavbarToggler onClick={toggle} />
+
         <Collapse isOpen={isOpen} navbar>
           <Nav className="me-auto" navbar>
             <NavItem>
-              <NavLink href="#" onClick={e => {e.preventDefault();navigate("/gigs")}}>Find Gig</NavLink>
+              <NavLink
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate("/gigs");
+                }}
+              >
+                Find Gig
+              </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="#" onClick={e => {e.preventDefault();navigate("/profile")}}>
+              <NavLink
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate("/profile");
+                }}
+              >
                 Profile
               </NavLink>
             </NavItem>
-          
           </Nav>
-   
         </Collapse>
       </Navbar>
     </div>
