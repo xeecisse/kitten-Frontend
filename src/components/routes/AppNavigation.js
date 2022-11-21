@@ -11,6 +11,12 @@ import ViewModel from "../../pages/models/ViewModel";
 import Message from "../../pages/message";
 import Reviews from "../../pages/reviews";
 import ErrorPage from "../../pages/error-page";
+import Gigs from "../../pages/Gigs/Gigs";
+import ViewGigs from "../../pages/Gigs/ViewGigs";
+import Apply from "../../pages/Gigs/Apply";
+import Create from "../../pages/Gigs/Create";
+import Update from "../modal";
+import ModalAlert from "../modal";
 
 function AppNavigation() {
   let element = useRoutes([
@@ -58,10 +64,26 @@ function AppNavigation() {
       path: "profile",
       element: <Profile />,
     },
-    // {
-    //   path: '/gigs',
-    //   element: <Gigs  />,
-    // },
+    {
+      path: "/gigs",
+      element: <Gigs />,
+    },
+    {
+      path: "/view-gigs",
+      element: <ViewGigs />,
+    },
+    {
+      path: "/apply-gigs",
+      element: <Apply />,
+    },
+    {
+      path: "/create-gig",
+      element: <Create />,
+    },
+    {
+      path: "/update-profile",
+      element: <ModalAlert />,
+    },
   ]);
   return element;
 }

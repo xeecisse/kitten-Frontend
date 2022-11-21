@@ -11,7 +11,7 @@ import {
   Row,
   Spinner,
 } from "reactstrap";
-import bg from "../../img/bg.jpg";
+import bg1 from "../../img/bg1.jpg";
 import SelectInput from "../../components/UI/SelectInput";
 import "./Signup.css";
 import { useNavigate } from "react-router";
@@ -24,7 +24,7 @@ function Signup() {
     <div
       className="m-0"
       style={{
-        backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ),url(${bg})`,
+        backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ),url(${bg1})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         backgroundPosition: "center",

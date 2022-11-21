@@ -6,7 +6,8 @@ import model_image from "../../img/bg_2.jpg";
 import ProfileDetails from "./ProfileDetails";
 import { FaEnvelope, FaBookmark } from "react-icons/fa";
 import { MdRateReview } from "react-icons/md";
-import { useNavigate } from "react-router";
+import { Navigate, useNavigate } from "react-router";
+import { Button } from "reactstrap";
 
 function Profile() {
   const navigate = useNavigate();
@@ -57,6 +58,10 @@ function Profile() {
             <CustomButton color="dark" className="col-4 col-md-3 col-sm-4">
               <MdRateReview color="white" size={18} className="mr-2" /> Reviews
             </CustomButton>
+            <Button onClick={() => navigate("/create-gig")}>Create Gig</Button>
+            <Button onClick={() => navigate("/update-profile")}>
+              Update profile
+            </Button>
           </div>
         </div>
 

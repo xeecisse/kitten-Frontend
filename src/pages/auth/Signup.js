@@ -67,9 +67,24 @@ function Signup() {
                   <label>Password</label>
                   <Input type="password" placeholder="*******" required />
                 </div>
+                <div className="my-2">
+                  <label>You are....</label>
+                  <select className="form-control">
+                    <option>select</option>
+                    <option>Model</option>
+                    <option>Makeup Artist</option>
+                    <option>Photographer</option>
+                    <option>Stylyist</option>
+                    <option>Company</option>
+                  </select>
+                </div>
 
                 <div className="text-center mt-2">
-                  <CustomButton color="dark" className="px-5">
+                  <CustomButton
+                    color="dark"
+                    className="px-5"
+                    onClick={() => navigate("/model-list")}
+                  >
                     Submit
                   </CustomButton>
                 </div>
