@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Button,
   ButtonGroup,
@@ -6,9 +6,11 @@ import {
   CardBody,
   CardHeader,
   Col,
+  Container,
   Form,
   FormGroup,
   Input,
+  InputGroup,
   Label,
   Row,
 } from "reactstrap";
@@ -18,8 +20,32 @@ import { IoLocationSharp } from "react-icons/ai";
 import { BsFillGeoAltFill, BsFillAlarmFill } from "react-icons/bs";
 import { useNavigate } from "react-router";
 import SelectInput from "../../components/UI/SelectInput";
+import { COMPLEXIONS } from "../../utils/constants";
+import CustomButton from "../../components/UI/CustomButton";
+import { postApi } from "../../redux/actions/api";
+
 function Create({ Model = {} }) {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [form, setForm] = useState({});
+
+  const handleChange = ({ target: { name, value } }) =>
+    setForm((p) => ({ ...p, [name]: value }));
+
+  const handleSubmit = () => {
+    setLoading(true);
+    postApi("gigs/create", form)
+      .then((resp) => {
+        setLoading(false);
+        alert(resp.message);
+      })
+      .catch((e) => {
+        console.log(e);
+        setLoading(false);
+        alert(e.message);
+      });
+  };
+
   return (
     <div
       className="m-0"
@@ -32,80 +58,192 @@ function Create({ Model = {} }) {
         overflow: "scroll",
       }}
     >
-      <Card
-        style={{
-          width: "60%",
-          margin: "50px",
-          orderRadius: "0",
-          border: "none",
-          backgroundColor: "rgba(127, 205, 218, 0.1)",
-          color: "white",
-          fontFamily: 'font-family: "Gill Sans", sans-serif;',
-        }}
-      >
-        <CardHeader>Gig Creation</CardHeader>
-        <CardBody>
-          <Form>
-            <FormGroup>
-              <label>Title</label>
-              <Input style={{ width: "60%" }} />
-            </FormGroup>
-            <FormGroup>
-              <label>Description</label>
-              <Input style={{ width: "60%" }} />
-            </FormGroup>
-            <FormGroup>
-              <label>Location</label>
-              <Input style={{ width: "60%" }} />
-            </FormGroup>
-            <FormGroup>
-              <input type="radio" /> Male
-              <input type="radio" /> Female
-              <input type="radio" /> All
-            </FormGroup>
-            <Row>
-              <Col md={4}>
+      <Container>
+        <Card
+          style={{
+            // width: "60%",
+            // margin: "50px",
+            orderRadius: "0",
+            border: "none",
+            backgroundColor: "rgba(127, 205, 218, 0.1)",
+            color: "white",
+            fontFamily: '"Gill Sans", sans-serif',
+          }}
+          className="my-2"
+        >
+          <CardHeader>Create a new gig</CardHeader>
+          <CardBody>
+            {/* {JSON.stringify(form)} */}
+            <Form className="row">
+              <FormGroup className="col-md-4">
+                <label>Title</label>
+                <Input
+                  placeholder="Gig title"
+                  name="title"
+                  value={form.title}
+                  onChange={handleChange}
+                />
+              </FormGroup>
+              <FormGroup className="col-md-4">
+                <label>Description</label>
+                <Input
+                  placeholder="Description of gig"
+                  name="description"
+                  value={form.description}
+                  onChange={handleChange}
+                />
+              </FormGroup>
+              <FormGroup className="col-md-4">
+                <label>Location</label>
+                <Input
+                  placeholder="Gig location"
+                  name="location"
+                  value={form.location}
+                  onChange={handleChange}
+                />
+              </FormGroup>
+              <FormGroup className="col-md-4">
+                <label>Applicable gender</label>
+                <div>
+                  <label className="me-3">
+                    <Input
+                      type="radio"
+                      checked={form.gender === "Male"}
+                      onChange={() =>
+                        setForm((p) => ({ ...p, gender: "Male" }))
+                      }
+                    />{" "}
+                    Male
+                  </label>
+                  <label className="me-3">
+                    <Input
+                      type="radio"
+                      checked={form.gender === "Female"}
+                      onChange={() =>
+                        setForm((p) => ({ ...p, gender: "Female" }))
+                      }
+                    />{" "}
+                    Female
+                  </label>
+                  <label className="me-3">
+                    <Input
+                      type="radio"
+                      checked={form.gender === "All"}
+                      onChange={() => setForm((p) => ({ ...p, gender: "All" }))}
+                    />{" "}
+                    All
+                  </label>
+                </div>
+              </FormGroup>
+
+              <FormGroup className="col-md-4">
                 <label>Age Range</label>
-                <Input />
-              </Col>
-              <Col md={4}>
+                <InputGroup>
+                  <Input
+                    placeholder="Min age"
+                    name="lim_age_min"
+                    value={form.lim_age_min}
+                    onChange={handleChange}
+                  />
+                  <Input
+                    placeholder="Max age"
+                    name="lim_age_max"
+                    value={form.lim_age_max}
+                    onChange={handleChange}
+                  />
+                </InputGroup>
+              </FormGroup>
+              <FormGroup className="col-md-4">
                 <label>Height</label>
-                <Input />
-              </Col>
-            </Row>
-            <FormGroup>
-              <label>Complextion</label>
-              <select className="form-control" style={{ width: "60%" }}>
-                <option>black</option>
-                <option>blue</option>
-                <option>green</option>
-                <option>brown</option>
-                <option>pink</option>
-              </select>
-            </FormGroup>
-            <FormGroup>
-              <label>Gig End Date</label>
-              <Input style={{ width: "60%" }} />
-            </FormGroup>
-            <FormGroup>
-              <input type="radio" /> Paid
-              <input type="radio" /> Collaboration
-            </FormGroup>
-            <FormGroup>
-              <Input placeholder="Details" style={{ width: "60%" }} />
-            </FormGroup>
-            <FormGroup>
-              <label>Add Photo</label>
-              <input
-                type="file"
-                className="form-control"
-                style={{ width: "60%" }}
-              />
-            </FormGroup>
-          </Form>
-          <Button>Create</Button>
-        </CardBody>
-      </Card>
+                <InputGroup>
+                  <Input
+                    placeholder="Min height"
+                    name="lim_height_min"
+                    value={form.lim_height_min}
+                    onChange={handleChange}
+                  />
+                  <Input
+                    placeholder="Max height"
+                    name="lim_height_max"
+                    value={form.lim_height_max}
+                    onChange={handleChange}
+                  />
+                </InputGroup>
+              </FormGroup>
+
+              <FormGroup className="col-md-4">
+                <label>Complexion</label>
+                <select
+                  className="form-control"
+                  name="lim_complexion"
+                  value={form.lim_complexion}
+                  onChange={handleChange}
+                >
+                  {COMPLEXIONS.map((i, ix) => (
+                    <option key={ix} value={i}>
+                      {i}
+                    </option>
+                  ))}
+                </select>
+              </FormGroup>
+              <FormGroup className="col-md-4">
+                <label>Gig End Date</label>
+                <Input
+                  type="date"
+                  name="reg_end_date"
+                  value={form.reg_end_date}
+                  onChange={handleChange}
+                />
+              </FormGroup>
+              <FormGroup className="col-md-4">
+                <label>Payment option</label>
+                <div>
+                  <label className="me-3">
+                    <Input
+                      type="radio"
+                      checked={form.payment_type === "Paid"}
+                      onChange={() =>
+                        setForm((p) => ({ ...p, payment_type: "Paid" }))
+                      }
+                    />{" "}
+                    Paid
+                  </label>
+                  <label className="me-3">
+                    <Input
+                      type="radio"
+                      checked={form.payment_type === "Collaboration"}
+                      onChange={() =>
+                        setForm((p) => ({
+                          ...p,
+                          payment_type: "Collaboration",
+                        }))
+                      }
+                    />{" "}
+                    Collaboration
+                  </label>
+                </div>
+              </FormGroup>
+              <FormGroup className="col-md-4">
+                <label>Payment Details (optional)</label>
+                <Input
+                  placeholder="Details"
+                  type="textarea"
+                  name="payment_details"
+                  value={form.payment_details}
+                  onChange={handleChange}
+                />
+              </FormGroup>
+              <FormGroup className="col-md-4">
+                <label>Add Photos</label>
+                <input type="file" className="form-control" />
+              </FormGroup>
+            </Form>
+            <CustomButton loading={loading} onClick={handleSubmit}>
+              Create
+            </CustomButton>
+          </CardBody>
+        </Card>
+      </Container>
     </div>
   );
 }

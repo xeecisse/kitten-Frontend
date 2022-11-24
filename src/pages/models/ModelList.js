@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Navigate, useNavigate } from "react-router";
 import {
   Button,
@@ -16,9 +16,19 @@ import modelData from "./sample_data.json";
 
 import bg_2 from "../../img/bg_2.jpg";
 import image_2 from "../../img/image_2.jpg";
+import { useDispatch, useSelector } from "react-redux";
+import { getModelList } from "../../redux/actions/models";
+import { getAgeFromDOB } from "../../utils";
 
 function GeneralModels() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const modelList = useSelector((state) => state.models.modelList) || [];
+
+  useEffect(() => {
+    dispatch(getModelList());
+  }, [dispatch]);
+
   return (
     <div
       className="m-0"
@@ -32,7 +42,7 @@ function GeneralModels() {
       }}
     >
       {/* <SearchBar/> */}
-
+      {/* {JSON.stringify(modelList)} */}
       <Row className="m-0 my-1">
         <Col
           className="offset-md-2 d-flex flex-direction-row flex-wrap  bg-dager"
@@ -51,8 +61,13 @@ function GeneralModels() {
             {/* <div className="my-2 px-2">
               <Input className="form-control" placeholder="Search for model" />
             </div> */}
+            {modelList.length ? null : (
+              <p className="text-center text-white">
+                List is empty, check back later
+              </p>
+            )}
             <Row className="m-0">
-              {modelData.models.map((i) => (
+              {modelList.map((model, i) => (
                 <div className="col-md-6 my-1 px-1">
                   <Card
                     key={i}
@@ -60,19 +75,21 @@ function GeneralModels() {
                     style={{
                       height: "500px",
                       // width: "48%",
-                      backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4) ),url(${i.profile_image})`,
+                      backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4) ),url(${model.cover_image})`,
                       backgroundRepeat: "no-repeat",
                       backgroundSize: "cover",
                       backgroundPosition: "center",
                       cursor: "pointer",
                     }}
-                    onClick={() => navigate(`view-model/${i.id}`)}
+                    onClick={() => navigate(`view-model/${model.id}`)}
                   >
                     <div className="p-2">
                       <p className="h4">
-                        {i.username} ({i.age})
+                        {/* {i.preferred_name}  */}
+                        {model.firstname} {model.lastname} (
+                        {getAgeFromDOB(model.dob)})
                       </p>
-                      <p className="h6">{i.location}</p>
+                      <p className="h6">{model.location}</p>
                     </div>
                   </Card>
                 </div>

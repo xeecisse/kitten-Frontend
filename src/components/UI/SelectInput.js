@@ -8,13 +8,13 @@ function SelectInput(props) {
     <FormGroup className={container}>
       {label && label !== "" ? (
         <>
-          <Label className="font-weight-bold">{label}</Label>
+          <Label className="fw-bold">{label}</Label>
           {required && <span className="text-danger">*</span>}
         </>
       ) : null}
-      <Input
-        type="select"
-        className={`form-control-alternative ${className}`}
+      <select
+        // type="select"
+        className={`form-control ${className}`}
         // style={{ border: `1px solid ${}`, ...props.style }}
         {...props}
       >
@@ -24,7 +24,7 @@ function SelectInput(props) {
             {item}
           </option>
         ))}
-      </Input>
+      </select>
     </FormGroup>
   );
 }

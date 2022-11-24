@@ -21,7 +21,7 @@ import Photos from "./Photos";
 import Portfolio from "./Portfolio";
 import Videos from "./Videos";
 
-function ProfileDetails({ modelInfo = {} }) {
+function ProfileDetails({ modelInfo = {}, profileInfo = {} }) {
   const [activeTab, setActiveTab] = useState("1");
   //   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -104,7 +104,7 @@ function ProfileDetails({ modelInfo = {} }) {
           <Videos />
         </TabPane>
         <TabPane tabId="3">
-          <AboutMe />
+          <AboutMe profileInfo={profileInfo} />
         </TabPane>
         <TabPane tabId="4">
           <Portfolio portfolio={modelInfo.portfolio} />

@@ -1,9 +1,19 @@
+import { useState } from "react";
+import { FaPlus } from "react-icons/fa";
 import { Col, Row } from "reactstrap";
+import CustomButton from "../../components/UI/CustomButton";
 import model_image from "../../img/bg_5.jpg";
+import AddPortfolio from "./components/AddPortfolio";
 
 export default ({ portfolio = [] }) => {
+  const [portfolioModalIsOpen, setPortFolioModalIsOpn] = useState(false);
   return (
     <div>
+      <div className="d-flex flex-direction-row justify-content-end my-1">
+        <CustomButton color="dark" onClick={() => setPortFolioModalIsOpn(true)}>
+          <FaPlus /> Add New
+        </CustomButton>
+      </div>
       {/* <h3 className="text-center">Photos</h3> */}
 
       <Row className="d-flex flex-row flex-wrap">
@@ -25,6 +35,11 @@ export default ({ portfolio = [] }) => {
           </Col>
         ))}
       </Row>
+
+      <AddPortfolio
+        isOpen={portfolioModalIsOpen}
+        toggle={() => setPortFolioModalIsOpn((p) => !p)}
+      />
     </div>
   );
 };

@@ -1,5 +1,5 @@
-import React from "react";
-import { Outlet, useRoutes } from "react-router";
+import React, { useEffect } from "react";
+import { Outlet, useLocation, useNavigate, useRoutes } from "react-router";
 import Signup from "../../pages/auth/Signup";
 // import MenuIndex from '../../Pages/Sidebar/MenuIndex';
 // import Welcome from '../../Pages/Welcome';
@@ -17,8 +17,28 @@ import Apply from "../../pages/Gigs/Apply";
 import Create from "../../pages/Gigs/Create";
 import Update from "../modal";
 import ModalAlert from "../modal";
+import { useDispatch } from "react-redux";
+import { init } from "../../redux/actions/auth";
 
 function AppNavigation() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const initialRoute = location.pathname;
+    dispatch(
+      init(
+        () => {
+          navigate(initialRoute);
+        },
+        () => {
+          navigate("/login?rdr=" + initialRoute);
+        }
+      )
+    );
+  }, []);
+
   let element = useRoutes([
     {
       path: "/",

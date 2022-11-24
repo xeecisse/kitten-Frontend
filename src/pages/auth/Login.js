@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Button,
   Card,
@@ -11,14 +11,44 @@ import {
   Row,
   Spinner,
 } from "reactstrap";
-import bg1 from "../../img/bg1.jpg";
-import SelectInput from "../../components/UI/SelectInput";
+import bg1 from "../../img/bg_1.jpg";
 import "./Signup.css";
 import { useNavigate } from "react-router";
 import CustomButton from "../../components/UI/CustomButton";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/actions/auth";
+import { useQuery } from "../../hooks";
 
 function Signup() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const query = useQuery();
+  const rdr = query.get("rdr");
+  const [form, setForm] = useState({});
+  const [loading, setLoading] = useState(false);
+
+  const handleChange = ({ target: { name, value } }) =>
+    setForm((p) => ({ ...p, [name]: value }));
+
+  const handleLogin = () => {
+    setLoading(true);
+    dispatch(
+      login(
+        form,
+        () => {
+          setLoading(false);
+          if (rdr) {
+            navigate(rdr);
+          } else {
+            navigate("/model-list");
+          }
+        },
+        () => {
+          setLoading(false);
+        }
+      )
+    );
+  };
 
   return (
     <div
@@ -53,19 +83,34 @@ function Signup() {
               <Row className="login-row mt-2">
                 <div className="my-2">
                   <label>Email</label>
-                  <Input type="email" required placeholder="example@mail.com" />
+                  <Input
+                    type="email"
+                    required
+                    placeholder="example@mail.com"
+                    name="email"
+                    value={form.email}
+                    onChange={handleChange}
+                  />
                 </div>
 
                 <div className="my-2">
                   <label>Password</label>
-                  <Input type="password" placeholder="*******" required />
+                  <Input
+                    type="password"
+                    placeholder="*******"
+                    required
+                    name="password"
+                    value={form.password}
+                    onChange={handleChange}
+                  />
                 </div>
               </Row>
               <div className="text-center">
                 <CustomButton
                   className="m-1 px-5"
-                  onClick={() => navigate("/model-list")}
+                  onClick={handleLogin}
                   color="dark"
+                  loading={loading}
                 >
                   Submit
                 </CustomButton>

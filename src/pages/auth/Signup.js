@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Card,
@@ -16,9 +16,49 @@ import SelectInput from "../../components/UI/SelectInput";
 import "./Signup.css";
 import { useNavigate } from "react-router";
 import CustomButton from "../../components/UI/CustomButton";
+import { fetchApi, postApi } from "../../redux/actions/api";
 
 function Signup() {
   const navigate = useNavigate();
+  const [accountTypes, setAccountTypes] = useState([]);
+  const [form, setForm] = useState({});
+  const [loading, setLoading] = useState(false);
+
+  const getAccountTypes = () => {
+    fetchApi("account_types")
+      .then((resp) => {
+        // console.log(resp);
+        if (resp && resp.data) {
+          setAccountTypes(resp.data);
+        }
+      })
+      .catch((e) => console.log(e));
+  };
+
+  useEffect(() => {
+    getAccountTypes();
+  }, []);
+
+  const handleChange = ({ target: { name, value } }) =>
+    setForm((p) => ({ ...p, [name]: value }));
+
+  const handleSubmit = () => {
+    setLoading(true);
+    postApi("users/create", form)
+      .then((resp) => {
+        setLoading(false);
+        if (resp && resp.success) {
+          alert(resp.message);
+        } else {
+          console.log(resp);
+          alert(resp.message);
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+        setLoading(false);
+      });
+  };
 
   return (
     <div
@@ -49,41 +89,85 @@ function Signup() {
             <CardHeader className="h4 text-center">Signup</CardHeader>
             <CardBody>
               <Row className="login-row mt-2">
-                <div className="my-2">
-                  <label>Name</label>
-                  <Input
-                    className="form-control"
-                    placeholder="e.g. John Doe"
-                    required
-                  />
+                <div className="row">
+                  <div className="my-2 col-md-6">
+                    <label>First Name</label>
+                    <Input
+                      className="form-control"
+                      placeholder="e.g. John"
+                      required
+                      name="firstname"
+                      value={form.firstname}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="my-2 col-md-6">
+                    <label>Last Name</label>
+                    <Input
+                      className="form-control"
+                      placeholder="e.g. Doe"
+                      required
+                      name="lastname"
+                      value={form.lastname}
+                      onChange={handleChange}
+                    />
+                  </div>
                 </div>
 
                 <div className="my-2">
                   <label>Email</label>
-                  <Input type="email" required placeholder="example@mail.com" />
+                  <Input
+                    type="email"
+                    required
+                    placeholder="example@mail.com"
+                    name="email"
+                    value={form.email}
+                    onChange={handleChange}
+                  />
                 </div>
 
                 <div className="my-2">
                   <label>Password</label>
-                  <Input type="password" placeholder="*******" required />
+                  <Input
+                    type="password"
+                    placeholder="*******"
+                    required
+                    name="password"
+                    value={form.password}
+                    onChange={handleChange}
+                  />
                 </div>
                 <div className="my-2">
-                  <label>You are....</label>
-                  <select className="form-control">
-                    <option>select</option>
-                    <option>Model</option>
-                    <option>Makeup Artist</option>
-                    <option>Photographer</option>
-                    <option>Stylyist</option>
-                    <option>Company</option>
-                  </select>
+                  <SelectInput
+                    label="You are...."
+                    name="account_type"
+                    value={form.account_type}
+                    onChange={handleChange}
+                    options={accountTypes.map((a) => a.name)}
+                  />
+                  {/* <label>You are....</label>
+                  <select
+                    className="form-control"
+                    name="account_type"
+                    value={form.account_type}
+                    onChange={handleChange}
+                  >
+                    {accountTypes
+                      .map((a) => a.name)
+                      .map((acc, i) => (
+                        <option key={i} value={acc}>
+                          {acc}
+                        </option>
+                      ))}
+                  </select> */}
                 </div>
 
                 <div className="text-center mt-2">
                   <CustomButton
                     color="dark"
                     className="px-5"
-                    onClick={() => navigate("/model-list")}
+                    onClick={handleSubmit}
+                    loading={loading}
                   >
                     Submit
                   </CustomButton>
