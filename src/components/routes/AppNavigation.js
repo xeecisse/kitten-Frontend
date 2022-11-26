@@ -17,6 +17,8 @@ import Apply from "../../pages/Gigs/Apply";
 import Create from "../../pages/Gigs/Create";
 import Update from "../modal";
 import ModalAlert from "../modal";
+import Contract from "../../pages/Contract";
+import ViewContract from "../../pages/ViewContract";
 
 function AppNavigation() {
   let element = useRoutes([
@@ -83,6 +85,14 @@ function AppNavigation() {
     {
       path: "/update-profile",
       element: <ModalAlert />,
+    },
+    {
+      path: "/create-contract",
+      element: <Contract />,
+    },
+    {
+      path: "/view-contract",
+      element: <ViewContract />,
     },
   ]);
   return element;

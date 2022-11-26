@@ -1,7 +1,7 @@
 import { FaClock } from "react-icons/fa";
 import { Card, CardBody, CardHeader } from "reactstrap";
 import CustomButton from "../../components/UI/CustomButton";
-
+import '../../styles/AppStyles.css'
 export default (props) => {
   return (
     <p className="text-white">
@@ -88,6 +88,7 @@ export default (props) => {
           rows={4}
         />
       </div>
+      <button className="primary_button">Create Contract</button>
       <CustomButton color="light" size="lg" rounded className="float-end">
         Send
       </CustomButton>
