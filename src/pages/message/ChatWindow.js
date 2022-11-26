@@ -1,8 +1,10 @@
 import { FaClock } from "react-icons/fa";
+import { useNavigate } from "react-router";
 import { Card, CardBody, CardHeader } from "reactstrap";
 import CustomButton from "../../components/UI/CustomButton";
 import '../../styles/AppStyles.css'
 export default (props) => {
+  const goto = useNavigate()
   return (
     <p className="text-white">
       <div className="d-flex justify-content-between mb-4">
@@ -88,7 +90,7 @@ export default (props) => {
           rows={4}
         />
       </div>
-      <button className="primary_button">Create Contract</button>
+      <button className="primary_button" onClick={()=>goto('/create-contract')}>Create Contract</button>
       <CustomButton color="light" size="lg" rounded className="float-end">
         Send
       </CustomButton>
