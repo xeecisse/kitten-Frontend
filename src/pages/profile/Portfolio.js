@@ -1,20 +1,38 @@
 import { useState } from "react";
 import { FaPlus } from "react-icons/fa";
-import { Col, Row } from "reactstrap";
+import { Col, Row, Spinner } from "reactstrap";
 import CustomButton from "../../components/UI/CustomButton";
 import model_image from "../../img/bg_5.jpg";
 import AddPortfolio from "./components/AddPortfolio";
 
-export default ({ portfolio = [] }) => {
+export default ({ portfolio = [], notSelf = null }) => {
+  const [loading, setLoading] = useState(false);
   const [portfolioModalIsOpen, setPortFolioModalIsOpn] = useState(false);
   return (
     <div>
-      <div className="d-flex flex-direction-row justify-content-end my-1">
-        <CustomButton color="dark" onClick={() => setPortFolioModalIsOpn(true)}>
-          <FaPlus /> Add New
-        </CustomButton>
-      </div>
+      {notSelf ? null : (
+        <div className="d-flex flex-direction-row justify-content-end my-1">
+          <CustomButton
+            color="dark"
+            onClick={() => setPortFolioModalIsOpn(true)}
+          >
+            <FaPlus /> Add New
+          </CustomButton>
+        </div>
+      )}
       {/* <h3 className="text-center">Photos</h3> */}
+
+      {loading && (
+        <center className="my-2">
+          <Spinner color="white" />
+        </center>
+      )}
+
+      {portfolio.length ? null : (
+        <p className="text-center text-white my-2">
+          No portfolio added yet, check back later
+        </p>
+      )}
 
       <Row className="d-flex flex-row flex-wrap">
         {portfolio.map((i) => (

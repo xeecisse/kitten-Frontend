@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Card,
@@ -15,32 +15,33 @@ import model_image from "../../img/bg_2.jpg";
 import bg_2 from "../../img/bg_2.jpg";
 import { IoLocationSharp } from "react-icons/ai";
 import { BsFillGeoAltFill, BsFillAlarmFill } from "react-icons/bs";
-import { useNavigate } from "react-router";
-function Apply({ Model = {} }) {
-  const navigate = useNavigate();
-  return (
-    <div
-      className="m-0"
-      style={{
-        backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ),url(${bg_2})`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        height: "100vh",
-        overflow: "scroll",
-      }}
-    >
-      <Form>
-        <div className="row">
-          <Col md={8}>
-            <Input style={{ margin: "10px" }} />
-          </Col>
+import { useNavigate, useParams } from "react-router";
+import { fetchApi } from "../../redux/actions/api";
+import ImageBackgroundWrapper from "../../components/UI/ImageBackgroundWrapper";
 
-          <Col md={3}>
-            <Input style={{ margin: "10px" }} />
-          </Col>
-        </div>
-      </Form>
+function Apply() {
+  const { id } = useParams();
+  const [gigInfo, setGigInfo] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setLoading(true);
+    fetchApi(`gigs/details?id=${id}`)
+      .then((resp) => {
+        setLoading(false);
+        if (resp.success && resp.data && resp.data.length) {
+          setGigInfo(resp.data[0]);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        setLoading(false);
+      });
+  }, []);
+
+  return (
+    <ImageBackgroundWrapper>
       <div className="mx-5">
         <Col md={10}>
           <Card
@@ -54,14 +55,8 @@ function Apply({ Model = {} }) {
           >
             <CardHeader>Gigs Details</CardHeader>
             <CardBody>
-              <span>Title: Halloween Look</span>
-              <p>
-                Description: “I'm no model lady. ... “The secret to modeling is
-                not being perfect. ... “I don't want to be a supermodel; I want
-                to be a role model.” ... “We are often taught to look for the
-                beauty in all things, so in finding it, the layman asks the
-                philosopher while the philosopher asks the photographer.”
-              </p>
+              <span>Title: {gigInfo.title}</span>
+              <p>{gigInfo.description}</p>
             </CardBody>
           </Card>
           <Card
@@ -105,7 +100,7 @@ function Apply({ Model = {} }) {
           </Card>
         </Col>
       </div>
-    </div>
+    </ImageBackgroundWrapper>
   );
 }
 

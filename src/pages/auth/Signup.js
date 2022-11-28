@@ -17,6 +17,7 @@ import "./Signup.css";
 import { useNavigate } from "react-router";
 import CustomButton from "../../components/UI/CustomButton";
 import { fetchApi, postApi } from "../../redux/actions/api";
+import ImageBackgroundWrapper from "../../components/UI/ImageBackgroundWrapper";
 
 function Signup() {
   const navigate = useNavigate();
@@ -61,14 +62,9 @@ function Signup() {
   };
 
   return (
-    <div
-      className="m-0"
+    <ImageBackgroundWrapper
+      bg={bg}
       style={{
-        backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ),url(${bg})`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        height: "100vh",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -173,13 +169,29 @@ function Signup() {
                   </CustomButton>
                 </div>
 
+                <div>
+                  <hr />
+                  <p className="text-center">Signup with </p>
+                  <div className="d-flex flex-direction-column mt-2 justify-content-center">
+                    <CustomButton className="m-1" color="danger">
+                      Google
+                    </CustomButton>
+                    <CustomButton className="m-1" color="primary">
+                      Facebook
+                    </CustomButton>
+                    <CustomButton className="m-1" color="warning">
+                      Instagram
+                    </CustomButton>
+                  </div>
+                </div>
+
                 <div className="text-center">
                   <hr style={{ padding: 0 }}></hr>
                   <p
                     style={{
                       fontSize: "13px",
                       marginTop: 5,
-                      color: "grey",
+                      // color: "grey",
                     }}
                   >
                     Already have an account?{" "}
@@ -196,7 +208,7 @@ function Signup() {
           </Card>
         </Col>
       </Row>
-    </div>
+    </ImageBackgroundWrapper>
   );
 }
 

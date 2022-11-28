@@ -18,6 +18,7 @@ import CustomButton from "../../components/UI/CustomButton";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/actions/auth";
 import { useQuery } from "../../hooks";
+import ImageBackgroundWrapper from "../../components/UI/ImageBackgroundWrapper";
 
 function Signup() {
   const navigate = useNavigate();
@@ -51,22 +52,15 @@ function Signup() {
   };
 
   return (
-    <div
-      className="m-0"
+    <ImageBackgroundWrapper
+      bg={bg1}
       style={{
-        backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ),url(${bg1})`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        height: "100vh",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
       }}
     >
-      {/* <Button>Login</Button> */}
-
       <Row>
         <Col className="offset-md-2" md={8}>
           <Card
@@ -116,16 +110,20 @@ function Signup() {
                 </CustomButton>
               </div>
 
-              <div className="d-flex flex-direction-column mt-2">
-                <CustomButton className="m-1" color="danger">
-                  Continue with Google
-                </CustomButton>
-                <CustomButton className="m-1" color="primary">
-                  Continue with Facebook
-                </CustomButton>
-                <CustomButton className="m-1" color="warning">
-                  Continue with Instagram
-                </CustomButton>
+              <div>
+                <hr />
+                <p className="text-center">Continue with </p>
+                <div className="d-flex flex-direction-column mt-2 justify-content-center">
+                  <CustomButton className="m-1" color="danger">
+                    Google
+                  </CustomButton>
+                  <CustomButton className="m-1" color="primary">
+                    Facebook
+                  </CustomButton>
+                  <CustomButton className="m-1" color="warning">
+                    Instagram
+                  </CustomButton>
+                </div>
               </div>
 
               <div className="text-center">
@@ -134,13 +132,13 @@ function Signup() {
                   style={{
                     fontSize: "13px",
                     marginTop: 5,
-                    color: "grey",
+                    // color: "grey",
                   }}
                 >
                   First time user?{" "}
                   <span
                     style={{ cursor: "pointer" }}
-                    onClick={() => navigate("/")}
+                    onClick={() => navigate("/sign-up")}
                   >
                     Create an account here!
                   </span>{" "}
@@ -150,7 +148,7 @@ function Signup() {
           </Card>
         </Col>
       </Row>
-    </div>
+    </ImageBackgroundWrapper>
   );
 }
 

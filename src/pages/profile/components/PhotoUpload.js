@@ -68,7 +68,6 @@ export default function PhotoUpload({
       >
         <ModalHeader toggle={onClose}>Upload Photos</ModalHeader>
         <ModalBody pb={6}>
-          {JSON.stringify(photos)}
           <FormGroup>
             <label>Select Photos</label>
             <input
@@ -81,7 +80,7 @@ export default function PhotoUpload({
         </ModalBody>
 
         <ModalFooter>
-          <CustomButton loading={loading} onClick={handleSubmit}>
+          <CustomButton color='dark' loading={loading} onClick={handleSubmit}>
             Submit
           </CustomButton>
         </ModalFooter>

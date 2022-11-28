@@ -74,7 +74,7 @@ export default function VideoUpload({ isOpen = false, toggle = (f) => f }) {
         </ModalBody>
 
         <ModalFooter>
-          <CustomButton loading={loading} onClick={handleSubmit}>
+          <CustomButton color="dark" loading={loading} onClick={handleSubmit}>
             Submit
           </CustomButton>
         </ModalFooter>

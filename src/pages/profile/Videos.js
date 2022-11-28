@@ -1,21 +1,21 @@
 import { useEffect, useState } from "react";
 import { FaUpload } from "react-icons/fa";
 import { useSelector } from "react-redux";
-import { Col, Row } from "reactstrap";
+import { Col, Row, Spinner } from "reactstrap";
 import CustomButton from "../../components/UI/CustomButton";
 import model_image from "../../img/bg_5.jpg";
 import { fetchApi } from "../../redux/actions/api";
 import VideoUpload from "./components/VideoUploads";
 
-export default () => {
-  const user = useSelector((state) => state.auth.user);
+export default ({ notSelf = true, profileInfo = {} }) => {
+  //   const user = useSelector((state) => state.auth.user);
   const [loading, setLoading] = useState(false);
   const [videoUploadModalIsopen, setVideoModalIsOpen] = useState();
   const [videoList, setVideoList] = useState([]);
 
   useEffect(() => {
     setLoading(true);
-    fetchApi(`get-media?user_id=${user.id}&resource_type=videos`)
+    fetchApi(`get-media?user_id=${profileInfo.id}&resource_type=videos`)
       .then((resp) => {
         setLoading(false);
         console.log(resp);
@@ -26,19 +26,30 @@ export default () => {
       .catch(() => {
         setLoading(false);
       });
-  }, []);
+  }, [profileInfo.id]);
 
   return (
     <div>
-      <div className="d-flex flex-direction-row justify-content-end my-1">
-        <CustomButton color="dark" onClick={() => setVideoModalIsOpen(true)}>
-          <FaUpload /> Upload Videos
-        </CustomButton>
-      </div>
+      {notSelf ? null : (
+        <div className="d-flex flex-direction-row justify-content-end my-1">
+          <CustomButton color="dark" onClick={() => setVideoModalIsOpen(true)}>
+            <FaUpload /> Upload Videos
+          </CustomButton>
+        </div>
+      )}
       {/* <h3 className="text-center">Photos</h3> */}
 
-      {videoList.length ? null : <p className="text-center text-white">
-              No video found, check back later</p>}
+      {loading && (
+        <center className="my-2">
+          <Spinner color="white" />
+        </center>
+      )}
+
+      {videoList.length ? null : (
+        <p className="text-center text-white my-2">
+          No video found, check back later
+        </p>
+      )}
 
       <Row className="d-flex flex-row flex-wrap">
         {videoList.map((vid, i) => (

@@ -15,15 +15,14 @@ import PhotoUpload from "./components/PhotoUpload";
 import { fetchApi } from "../../redux/actions/api";
 import { useSelector } from "react-redux";
 
-export default () => {
-  const user = useSelector((state) => state.auth.user);
+export default ({ notSelf = true, profileInfo = {} }) => {
   const [loading, setLoading] = useState(false);
   const [photoUploadModalIsOpen, setPhotoUploadModalIsOpen] = useState(false);
   const [imagesList, setImagesList] = useState([]);
 
   useEffect(() => {
     setLoading(true);
-    fetchApi(`get-media?user_id=${user.id}&resource_type=photos`)
+    fetchApi(`get-media?user_id=${profileInfo.id}&resource_type=photos`)
       .then((resp) => {
         setLoading(false);
         console.log(resp);
@@ -34,7 +33,7 @@ export default () => {
       .catch(() => {
         setLoading(false);
       });
-  }, []);
+  }, [profileInfo.id]);
 
   const renderImages = imagesList.map((image, i) => {
     return <ImageCard key={i} image={image} />;
@@ -42,14 +41,16 @@ export default () => {
 
   return (
     <div>
-      <div className="d-flex flex-direction-row justify-content-end my-1">
-        <CustomButton
-          color="dark"
-          onClick={() => setPhotoUploadModalIsOpen(true)}
-        >
-          <FaUpload /> Upload Photos
-        </CustomButton>
-      </div>
+      {notSelf ? null : (
+        <div className="d-flex flex-direction-row justify-content-end my-1">
+          <CustomButton
+            color="dark"
+            onClick={() => setPhotoUploadModalIsOpen(true)}
+          >
+            <FaUpload /> Upload Photos
+          </CustomButton>
+        </div>
+      )}
 
       {loading && (
         <center className="my-2">
@@ -58,13 +59,12 @@ export default () => {
       )}
 
       {imagesList.length ? null : (
-        <p className="text-center text-white">
+        <p className="text-center text-white my-2">
           No image found, check back later
         </p>
       )}
 
       <div className="image-list">{renderImages}</div>
-      {/* {JSON.stringify(imagesList)} */}
       <PhotoUpload
         isOpen={photoUploadModalIsOpen}
         onClose={() => setPhotoUploadModalIsOpen(false)}

@@ -19,6 +19,9 @@ import Update from "../modal";
 import ModalAlert from "../modal";
 import { useDispatch } from "react-redux";
 import { init } from "../../redux/actions/auth";
+import ManageGigs from "../../pages/Gigs/ManageGigs";
+import MyGigs from "../../pages/Gigs/MyGigs";
+import GigsApplicationInfo from "../../pages/Gigs/GigsApplicationInfo";
 
 function AppNavigation() {
   const navigate = useNavigate();
@@ -42,8 +45,12 @@ function AppNavigation() {
   let element = useRoutes([
     {
       path: "/",
+      element: <ModelList />,
+      // errorElement: <ErrorPage />,
+    },
+    {
+      path: "/sign-up",
       element: <Signup />,
-      errorElement: <ErrorPage />,
     },
     {
       path: "/login",
@@ -56,7 +63,8 @@ function AppNavigation() {
         { path: "/model-list", element: <ModelList />, index: true },
         {
           path: "view-model/:model_id",
-          element: <ViewModel />,
+          element: <Profile />,
+          // element: <ViewModel />,
           // element: <Outlet />,
           // children: [
           //   {
@@ -89,16 +97,32 @@ function AppNavigation() {
       element: <Gigs />,
     },
     {
-      path: "/view-gigs",
+      path: "/gig-details/:id",
       element: <ViewGigs />,
     },
     {
-      path: "/apply-gigs",
+      path: "/submit-proposal/:id",
       element: <Apply />,
     },
     {
       path: "/create-gig",
       element: <Create />,
+    },
+    {
+      path: "/manage-gigs",
+      element: <ManageGigs />,
+    },
+    {
+      path: "/manage-gigs/view/:id",
+      element: <GigsApplicationInfo />,
+    },
+    {
+      path: "/manage-gigs/view-proposal/:id",
+      element: <GigsApplicationInfo />,
+    },
+    {
+      path: "/my-gigs",
+      element: <MyGigs />,
     },
     {
       path: "/update-profile",

@@ -34,7 +34,7 @@ export default ({ profileInfo = {} }) => {
       </Card>
 
       <Card body className="my-2 text-white" color="dark">
-        <h4>About Me</h4>
+        <h4>Bio</h4>
 
         <p>{profileInfo.bio}</p>
       </Card>

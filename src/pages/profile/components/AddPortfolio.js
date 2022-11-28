@@ -115,14 +115,10 @@ export default function AddPortfolio({
         </ModalBody>
 
         <ModalFooter>
-          <CustomButton
-            color="success"
-            onClick={handleSubmit}
-            loading={loading}
-          >
+          <CustomButton color="dark" onClick={handleSubmit} loading={loading}>
             Submit
           </CustomButton>
-          <CustomButton color="dark" onClick={toggle}>
+          <CustomButton color="danger" onClick={toggle}>
             Cancel
           </CustomButton>
         </ModalFooter>

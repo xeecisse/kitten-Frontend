@@ -1,30 +1,23 @@
 import React, { useState } from "react";
 import {
-  Button,
-  ButtonGroup,
   Card,
   CardBody,
   CardHeader,
-  Col,
   Container,
   Form,
   FormGroup,
   Input,
   InputGroup,
-  Label,
-  Row,
 } from "reactstrap";
-import model_image from "../../img/bg_2.jpg";
-import bg from "../../img/bg.jpg";
-import { IoLocationSharp } from "react-icons/ai";
-import { BsFillGeoAltFill, BsFillAlarmFill } from "react-icons/bs";
 import { useNavigate } from "react-router";
-import SelectInput from "../../components/UI/SelectInput";
 import { COMPLEXIONS } from "../../utils/constants";
 import CustomButton from "../../components/UI/CustomButton";
 import { postApi } from "../../redux/actions/api";
+import { useSelector } from "react-redux";
+import ImageBackgroundWrapper from "../../components/UI/ImageBackgroundWrapper";
 
-function Create({ Model = {} }) {
+function Create({}) {
+  const user = useSelector((state) => state.auth.user);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({});
@@ -34,10 +27,13 @@ function Create({ Model = {} }) {
 
   const handleSubmit = () => {
     setLoading(true);
+    form.poster_id = user.id;
+
     postApi("gigs/create", form)
       .then((resp) => {
         setLoading(false);
         alert(resp.message);
+        navigate("/manage-gigs");
       })
       .catch((e) => {
         console.log(e);
@@ -47,17 +43,7 @@ function Create({ Model = {} }) {
   };
 
   return (
-    <div
-      className="m-0"
-      style={{
-        backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ),url(${bg})`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        height: "100vh",
-        overflow: "scroll",
-      }}
-    >
+    <ImageBackgroundWrapper>
       <Container>
         <Card
           style={{
@@ -87,6 +73,7 @@ function Create({ Model = {} }) {
               <FormGroup className="col-md-4">
                 <label>Description</label>
                 <Input
+                  type="textarea"
                   placeholder="Description of gig"
                   name="description"
                   value={form.description}
@@ -108,9 +95,9 @@ function Create({ Model = {} }) {
                   <label className="me-3">
                     <Input
                       type="radio"
-                      checked={form.gender === "Male"}
+                      checked={form.lim_gender === "Male"}
                       onChange={() =>
-                        setForm((p) => ({ ...p, gender: "Male" }))
+                        setForm((p) => ({ ...p, lim_gender: "Male" }))
                       }
                     />{" "}
                     Male
@@ -118,9 +105,9 @@ function Create({ Model = {} }) {
                   <label className="me-3">
                     <Input
                       type="radio"
-                      checked={form.gender === "Female"}
+                      checked={form.lim_gender === "Female"}
                       onChange={() =>
-                        setForm((p) => ({ ...p, gender: "Female" }))
+                        setForm((p) => ({ ...p, lim_gender: "Female" }))
                       }
                     />{" "}
                     Female
@@ -128,8 +115,10 @@ function Create({ Model = {} }) {
                   <label className="me-3">
                     <Input
                       type="radio"
-                      checked={form.gender === "All"}
-                      onChange={() => setForm((p) => ({ ...p, gender: "All" }))}
+                      checked={form.lim_gender === "All"}
+                      onChange={() =>
+                        setForm((p) => ({ ...p, lim_gender: "All" }))
+                      }
                     />{" "}
                     All
                   </label>
@@ -187,7 +176,16 @@ function Create({ Model = {} }) {
                 </select>
               </FormGroup>
               <FormGroup className="col-md-4">
-                <label>Gig End Date</label>
+                <label>Gig start date</label>
+                <Input
+                  type="date"
+                  name="gig_date"
+                  value={form.gig_date}
+                  onChange={handleChange}
+                />
+              </FormGroup>
+              <FormGroup className="col-md-4">
+                <label>Gig end date</label>
                 <Input
                   type="date"
                   name="reg_end_date"
@@ -244,7 +242,7 @@ function Create({ Model = {} }) {
           </CardBody>
         </Card>
       </Container>
-    </div>
+    </ImageBackgroundWrapper>
   );
 }
 

@@ -19,6 +19,8 @@ import image_2 from "../../img/image_2.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { getModelList } from "../../redux/actions/models";
 import { getAgeFromDOB } from "../../utils";
+import { init } from "../../redux/actions/auth";
+import ImageBackgroundWrapper from "../../components/UI/ImageBackgroundWrapper";
 
 function GeneralModels() {
   const navigate = useNavigate();
@@ -26,21 +28,22 @@ function GeneralModels() {
   const modelList = useSelector((state) => state.models.modelList) || [];
 
   useEffect(() => {
+    dispatch(
+      init(
+        () => {},
+        () => {
+          navigate("/login");
+        }
+      )
+    );
+  }, []);
+
+  useEffect(() => {
     dispatch(getModelList());
   }, [dispatch]);
 
   return (
-    <div
-      className="m-0"
-      style={{
-        backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ),url(${bg_2})`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        height: "100vh",
-        overflow: "scroll",
-      }}
-    >
+    <ImageBackgroundWrapper>
       {/* <SearchBar/> */}
       {/* {JSON.stringify(modelList)} */}
       <Row className="m-0 my-1">
@@ -81,7 +84,9 @@ function GeneralModels() {
                       backgroundPosition: "center",
                       cursor: "pointer",
                     }}
-                    onClick={() => navigate(`view-model/${model.id}`)}
+                    onClick={() =>
+                      navigate(`/model-list/view-model/${model.id}`)
+                    }
                   >
                     <div className="p-2">
                       <p className="h4">
@@ -98,7 +103,7 @@ function GeneralModels() {
           </Card>
         </Col>
       </Row>
-    </div>
+    </ImageBackgroundWrapper>
   );
 }
 

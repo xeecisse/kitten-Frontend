@@ -45,9 +45,34 @@ function NavbarComponent(args) {
                 onClick={(e) => {
                   e.preventDefault();
                   navigate("/gigs");
+                  setIsOpen(false);
                 }}
               >
                 Find Gig
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate("/manage-gigs");
+                  setIsOpen(false);
+                }}
+              >
+                Manage Gigs
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate("/my-gigs");
+                  setIsOpen(false);
+                }}
+              >
+                My Gigs
               </NavLink>
             </NavItem>
             <NavItem>
