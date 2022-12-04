@@ -57,7 +57,7 @@ function GeneralModels() {
               border: "none",
               backgroundColor: "rgba(127, 205, 218, 0.1)",
               color: "white",
-              fontFamily: 'font-family: "Gill Sans", sans-serif;',
+              fontFamily: '"Gill Sans", sans-serif;',
             }}
             className="w-100"
           >
@@ -65,7 +65,7 @@ function GeneralModels() {
               <Input className="form-control" placeholder="Search for model" />
             </div> */}
             {modelList.length ? null : (
-              <p className="text-center text-white">
+              <p className="text-center text-white my-2">
                 List is empty, check back later
               </p>
             )}
@@ -83,6 +83,7 @@ function GeneralModels() {
                       backgroundSize: "cover",
                       backgroundPosition: "center",
                       cursor: "pointer",
+                      borderWidth: 0,
                     }}
                     onClick={() =>
                       navigate(`/model-list/view-model/${model.id}`)

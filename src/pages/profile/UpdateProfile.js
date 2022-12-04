@@ -13,6 +13,7 @@ import {
 import CustomButton from "../../components/UI/CustomButton";
 import { SET_PROFILE } from "../../redux/actions/actionTypes";
 import { postApi, updateApi } from "../../redux/actions/api";
+import { init } from "../../redux/actions/auth";
 import BasicInfo from "./components/BasicInfo";
 import ContactInfo from "./components/ContactInfo";
 import AppearanceInfo from "./components/PhysicalInfo";
@@ -44,6 +45,7 @@ export default function UpdateProfile({
     setLoading(true);
     updateApi("users/" + form.id, form)
       .then((resp) => {
+        dispatch(init());
         setLoading(false);
         alert("Profile updated successfully!");
         dispatch({ type: SET_PROFILE, payload: resp.user });

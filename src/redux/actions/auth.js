@@ -10,12 +10,12 @@ import { apiURL, postApi } from "./api";
 const TOKEN_KEY = "l@loon@_";
 
 export function login(
-  { email, password },
+  { email, password, app },
   callback = (f) => f,
   error = (f) => f
 ) {
   return (dispatch) => {
-    postApi("users/login", { email, password })
+    postApi("users/login", { email, password, app })
       .then((resp) => {
         if (resp.success) {
           dispatch({ type: SET_TOKEN, payload: resp.token });

@@ -19,13 +19,17 @@ import { useDispatch } from "react-redux";
 import { login } from "../../redux/actions/auth";
 import { useQuery } from "../../hooks";
 import ImageBackgroundWrapper from "../../components/UI/ImageBackgroundWrapper";
+import GoogleLogin from "react-google-login";
+import { GOGLE_CLIENT_ID } from "../../utils/config";
 
 function Signup() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const query = useQuery();
   const rdr = query.get("rdr");
-  const [form, setForm] = useState({});
+  const [form, setForm] = useState({
+    app: "Model",
+  });
   const [loading, setLoading] = useState(false);
 
   const handleChange = ({ target: { name, value } }) =>
@@ -41,7 +45,7 @@ function Signup() {
           if (rdr) {
             navigate(rdr);
           } else {
-            navigate("/model-list");
+            navigate("/");
           }
         },
         () => {
@@ -114,9 +118,24 @@ function Signup() {
                 <hr />
                 <p className="text-center">Continue with </p>
                 <div className="d-flex flex-direction-column mt-2 justify-content-center">
-                  <CustomButton className="m-1" color="danger">
-                    Google
-                  </CustomButton>
+                  <GoogleLogin
+                    clientId={GOGLE_CLIENT_ID}
+                    buttonText="Login"
+                    onSuccess={(e) => console.log(e)}
+                    onFailure={(e) => console.log(e)}
+                    cookiePolicy={"single_host_origin"}
+                    render={(renderProps) => (
+                      <CustomButton
+                        className="m-1"
+                        color="danger"
+                        onClick={renderProps.onClick}
+                        disabled={renderProps.disabled}
+                      >
+                        Google
+                      </CustomButton>
+                    )}
+                  />
+
                   <CustomButton className="m-1" color="primary">
                     Facebook
                   </CustomButton>
@@ -130,19 +149,20 @@ function Signup() {
                 <hr style={{ padding: 0 }}></hr>
                 <p
                   style={{
-                    fontSize: "13px",
+                    // fontSize: "13px",
                     marginTop: 5,
                     // color: "grey",
                   }}
                 >
                   First time user?{" "}
-                  <span
-                    style={{ cursor: "pointer" }}
-                    onClick={() => navigate("/sign-up")}
-                  >
-                    Create an account here!
-                  </span>{" "}
                 </p>
+                <Button
+                  color="dark"
+                  // style={{ cursor: "pointer" }}
+                  onClick={() => navigate("/sign-up")}
+                >
+                  Create an account here!
+                </Button>
               </div>
             </CardBody>
           </Card>

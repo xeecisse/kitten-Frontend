@@ -31,7 +31,7 @@ export default (props) => {
 
   useEffect(() => {
     setLoading(true);
-    fetchApi(`gigs/app-info/${id}/`)
+    fetchApi(`gigs/gig-app-info/${id}`)
       .then((resp) => {
         setLoading(false);
         if (resp.data && resp.data.length) {
@@ -83,24 +83,40 @@ export default (props) => {
           </center>
         )}
 
-        <div className="container">
-          <p className="display-6 text-white">{gigInfo.title}</p>
-          <p className="text-white">{gigInfo.description}</p>
-          <div className="d-flex flex-direction">
-            <BsFillGeoAltFill size={18} color="white" className="me-2" />
-            <p className="text-white">{gigInfo.location}</p>
-          </div>
-          {/* </div> */}
-          <div className="d-flex flex-direction">
-            <BsCalendar2Event color="white" size={18} className="me-2" />
-            <p className="text-white">Casting Start : {gigInfo.gig_date}</p>
-          </div>
-          <div className="d-flex flex-direction">
-            <BsCalendar2Event color="white" size={18} className="me-2" />
+        <Card
+          className="my-2"
+          style={{
+            orderRadius: "0",
+            border: "none",
+            backgroundColor: "rgba(127, 205, 218, 0.1)",
+            color: "white",
+            // fontFamily: '"Gill Sans", sans-serif',
+          }}
+        >
+          <CardHeader className="h5 text-center">{gigInfo.title}</CardHeader>
+          <CardBody>
+            <div className="container">
+              {/* <p className="display-6 text-white"></p> */}
+              <p className="text-white">{gigInfo.description}</p>
+              <div className="d-flex flex-direction">
+                <BsFillGeoAltFill size={18} color="white" className="me-2" />
+                <p className="text-white">{gigInfo.location}</p>
+              </div>
+              {/* </div> */}
+              <div className="d-flex flex-direction">
+                <BsCalendar2Event color="white" size={18} className="me-2" />
+                <p className="text-white">Casting Start : {gigInfo.gig_date}</p>
+              </div>
+              <div className="d-flex flex-direction">
+                <BsCalendar2Event color="white" size={18} className="me-2" />
 
-            <p className="text-white">Casting Ends : {gigInfo.reg_end_date}</p>
-          </div>
-        </div>
+                <p className="text-white">
+                  Casting Ends : {gigInfo.reg_end_date}
+                </p>
+              </div>
+            </div>
+          </CardBody>
+        </Card>
 
         {/* <p className="text-white">{JSON.stringify(gigAppInfo)}</p> */}
         <Card
@@ -117,14 +133,17 @@ export default (props) => {
             List of submitted proposals
           </CardHeader>
           <CardBody>
+            <div className="text-right">
+              Total invites sent: {gigInfo.invited_no}
+            </div>
             <Table size="sm" responsive bordered className="my-2">
               <thead>
                 <tr>
                   <th className="text-white text-center">S/N</th>
-                  <th className="text-white text-center">Applicant ID</th>
+                  {/* <th className="text-white text-center">Applicant ID</th> */}
                   <th className="text-white text-center">Applicant Name</th>
                   <th className="text-white text-center">Date Applied</th>
-                  {/* <th className="text-white text-center">Invited</th> */}
+                  <th className="text-white text-center">Status</th>
                   <th className="text-white text-center">Action</th>
                 </tr>
               </thead>
@@ -132,17 +151,23 @@ export default (props) => {
                 {gigAppInfo.map((l, i) => (
                   <tr key={i}>
                     <td className="text-white text-center">{i + 1}</td>
-                    <td className="text-white">{l.applicant_id}</td>
+                    {/* <td className="text-white">{l.applicant_id}</td> */}
                     <td className="text-white">{l.applicant_name}</td>
                     <td className="text-white text-center">
                       {moment(l.application_date).format("DD/MM/YYYY")}
                     </td>
-                    {/* <td className="text-white text-center">{l.invited_no}</td> */}
+                    <td className="text-white text-center">
+                      {l.application_status}
+                    </td>
                     <td className="text-white text-center">
                       <CustomButton
                         color="light"
                         size="sm"
-                        onClick={() => navigate(`/manage-gigs/view/${l.id}`)}
+                        onClick={() =>
+                          navigate(
+                            `/manage-gigs/view-proposal/${l.id}?gig_id=${l.gig_id}`
+                          )
+                        }
                       >
                         View Proposal
                       </CustomButton>

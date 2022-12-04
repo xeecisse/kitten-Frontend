@@ -25,12 +25,14 @@ import { useNavigate, useParams } from "react-router";
 import { fetchApi } from "../../redux/actions/api";
 import SubmitProposal from "./SubmitProposal";
 import ImageBackgroundWrapper from "../../components/UI/ImageBackgroundWrapper";
+import moment from "moment";
 
 function ViewGigs() {
   const { id } = useParams();
   const [gigInfo, setGigInfo] = useState([]);
   const [loading, setLoading] = useState(false);
   const [proposalIsOpen, setProposalIsOpen] = useState(false);
+  const [clientInfo, setClientInfo] = useState({});
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -40,6 +42,15 @@ function ViewGigs() {
         setLoading(false);
         if (resp.success && resp.data && resp.data.length) {
           setGigInfo(resp.data[0]);
+          fetchApi(`profile/details/${resp.data[0].poster_id}`)
+            .then((resp) => {
+              if (resp.success && resp.data && resp.data.length) {
+                setClientInfo(resp.data[0]);
+              }
+            })
+            .catch((err) => {
+              setLoading(false);
+            });
         }
       })
       .catch((err) => {
@@ -79,7 +90,10 @@ function ViewGigs() {
                 <Row>
                   <Col md={6}>
                     {/* <div className=" col-md-6 p-2"> */}
-                    <img src={model_image} className="img-fluid rounded my-3" />
+                    <img
+                      src={gigInfo.banner}
+                      className="img-fluid rounded my-3"
+                    />
                     {/* </div> */}
                   </Col>
                   <Col md={6}>
@@ -177,9 +191,10 @@ function ViewGigs() {
                 <Button
                   className="offset-md-10"
                   color="warning"
-                  onClick={() => navigate(`/submit-proposal/${id}`)}
+                  onClick={() => setProposalIsOpen(true)}
+                  // onClick={() => navigate(`/submit-proposal/${id}`)}
                 >
-                  Apply Now!!
+                  Apply Now
                 </Button>
               </CardBody>
             </Card>
@@ -195,18 +210,24 @@ function ViewGigs() {
                 fontFamily: 'font-family: "Gill Sans", sans-serif;',
               }}
             >
-              <CardHeader>About Client</CardHeader>
+              <CardHeader tag={"h5"}>About Client</CardHeader>
               <CardBody>
-                <p>Name:Mustapha Issa Toyin</p>
-                <p>Location:Kano, Nigeria</p>
-                <p>Gigs Posted:10</p>
-                <Button
+                <p>
+                  Name: {clientInfo.firstname} {clientInfo.lastname}
+                </p>
+                <p>
+                  Location: {clientInfo.state}, {clientInfo.country}
+                </p>
+                <p>Gigs Posted: {clientInfo.gigs_posted || 0}</p>
+                <g>Joined Laloona {moment(clientInfo.createdAt).fromNow()}</g>
+                {/* <Button
                   className="offset-md-10"
                   color="warning"
-                  onClick={() => navigate(`/submit-proposal/${id}`)}
+                  onClick={() => setProposalIsOpen(true)}
+                  // onClick={() => navigate(`/submit-proposal/${id}`)}
                 >
-                  Apply Now!!
-                </Button>
+                  Apply Now
+                </Button> */}
                 {/* <Button onClick={() => navigate("/apply-gigs")}>View</Button> */}
               </CardBody>
             </Card>
