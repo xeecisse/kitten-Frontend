@@ -1,5 +1,9 @@
 import { FaCheck } from "react-icons/fa";
 import { Card, CardBody } from "reactstrap";
+import bg1 from "../../img/bg_1.jpg";
+import bg2 from "../../img/bg_2.jpg";
+import bg3 from "../../img/bg_3.jpg";
+import bg4 from "../../img/bg_5.jpg";
 
 const color1 = "#ccc9c4";
 
@@ -12,11 +16,18 @@ export default (props) => {
   const color2 = `rgb(${rgb.map((c) => parseInt(c, 24) * 0.5).join()})`;
   return (
     <>
-      <h5 className="font-weight-bold mb-3 text-center text-white">Member</h5>
+      {/* <h5 className="font-weight-bold mb-3 text-center text-white">Member</h5> */}
 
       <Card
         className="mask-custom"
-        style={{ background: `linear-gradient(${color1}, ${color2})` }}
+        style={{
+          borderRadius: "0",
+          border: "none",
+          backgroundColor: "rgba(127, 205, 218, 0.1)",
+          color: "white",
+          fontFamily: '"Gill Sans", sans-serif',
+        }}
+        // style={{ background: `linear-gradient(${color1}, ${color2})` }}
       >
         <CardBody>
           <p className="mb-0">
@@ -27,7 +38,7 @@ export default (props) => {
               >
                 <div className="d-flex flex-row">
                   <img
-                    src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-8.webp"
+                    src={bg1}
                     alt="avatar"
                     className="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
                     width="60"
@@ -50,7 +61,7 @@ export default (props) => {
               >
                 <div className="d-flex flex-row">
                   <img
-                    src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-1.webp"
+                    src={bg2}
                     alt="avatar"
                     className="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
                     width="60"
@@ -72,7 +83,7 @@ export default (props) => {
               >
                 <div className="d-flex flex-row">
                   <img
-                    src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-2.webp"
+                    src={bg3}
                     alt="avatar"
                     className="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
                     width="60"
@@ -94,7 +105,7 @@ export default (props) => {
               >
                 <div className="d-flex flex-row">
                   <img
-                    src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-3.webp"
+                    src={bg4}
                     alt="avatar"
                     className="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
                     width="60"
@@ -116,7 +127,7 @@ export default (props) => {
               >
                 <div className="d-flex flex-row">
                   <img
-                    src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-4.webp"
+                    src={bg2}
                     alt="avatar"
                     className="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
                     width="60"
@@ -138,7 +149,7 @@ export default (props) => {
               >
                 <div className="d-flex flex-row">
                   <img
-                    src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-5.webp"
+                    src={bg1}
                     alt="avatar"
                     className="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
                     width="60"
@@ -160,7 +171,7 @@ export default (props) => {
               >
                 <div className="d-flex flex-row">
                   <img
-                    src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
+                    src={bg1}
                     alt="avatar"
                     className="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
                     width="60"

@@ -9,19 +9,13 @@ import {
   Button,
   CardHeader,
 } from "reactstrap";
+import ImageBackgroundWrapper from "../../components/UI/ImageBackgroundWrapper";
 import ChatList from "./ChatList";
 import ChatWindow from "./ChatWindow";
 
 export default function App() {
   return (
-    <Container
-      fluid
-      className="py-5"
-      style={{
-        background: `linear-gradient(rgba(50,50,50,0.9),transparent)`,
-        backgroundColor: "#555",
-      }}
-    >
+    <ImageBackgroundWrapper>
       <Row>
         <Col md="6" lg="5" xl="4" className="mb-4 mb-md-0">
           <ChatList />
@@ -31,6 +25,6 @@ export default function App() {
           <ChatWindow />
         </Col>
       </Row>
-    </Container>
+    </ImageBackgroundWrapper>
   );
 }

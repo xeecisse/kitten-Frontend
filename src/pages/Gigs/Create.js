@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {
   Card,
   CardBody,
+  CardFooter,
   CardHeader,
   Container,
   Form,
@@ -12,7 +13,7 @@ import {
 import { useNavigate } from "react-router";
 import { COMPLEXIONS } from "../../utils/constants";
 import CustomButton from "../../components/UI/CustomButton";
-import { postApi } from "../../redux/actions/api";
+import { apiURL, postApi } from "../../redux/actions/api";
 import { useSelector } from "react-redux";
 import ImageBackgroundWrapper from "../../components/UI/ImageBackgroundWrapper";
 
@@ -21,25 +22,75 @@ function Create({}) {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({});
+  const [banner, setBanner] = useState({});
+  const [attachments, setAttachments] = useState({});
 
   const handleChange = ({ target: { name, value } }) =>
     setForm((p) => ({ ...p, [name]: value }));
+
+  const submitData = (formData) => {
+    fetch(`${apiURL}/gigs/create`, {
+      method: "POST",
+      body: formData,
+    })
+      .then((raw) => raw.json())
+      .then((resp) => {
+        let gig_id = resp.gig_id;
+        if (Object.values(attachments).length) {
+          let formData2 = new FormData();
+          Object.values(attachments).forEach((i) =>
+            formData2.append("attachments", i)
+          );
+          form.poster_id = user.id;
+          form.gig_id = gig_id;
+          fetch(`${apiURL}/gigs/save-attachment`, {
+            method: "POST",
+            body: formData2,
+          })
+            .then((raw) => raw.json())
+            .then((resp) => {
+              setLoading(false);
+              alert(resp.message);
+            })
+            .catch((e) => {
+              setLoading(false);
+              console.log(e);
+              alert(e.message);
+            });
+        } else {
+          setLoading(false);
+          alert(resp.message);
+        }
+      })
+      .catch((e) => {
+        setLoading(false);
+        console.log(e);
+        alert(e.message);
+      });
+  };
 
   const handleSubmit = () => {
     setLoading(true);
     form.poster_id = user.id;
 
-    postApi("gigs/create", form)
-      .then((resp) => {
-        setLoading(false);
-        alert(resp.message);
-        navigate("/manage-gigs");
-      })
-      .catch((e) => {
-        console.log(e);
-        setLoading(false);
-        alert(e.message);
-      });
+    const formData = new FormData();
+    Object.keys(form).forEach((i) => formData.append(i, form[i]));
+    formData.append("banner", banner);
+    formData.append("gig_status", "active");
+
+    submitData(formData);
+  };
+
+  const handleSave = () => {
+    setLoading(true);
+    form.poster_id = user.id;
+
+    const formData = new FormData();
+    Object.keys(form).forEach((i) => formData.append(i, form[i]));
+    formData.append("banner", banner);
+    formData.append("gig_status", "draft");
+
+    submitData(formData);
   };
 
   return (
@@ -232,14 +283,37 @@ function Create({}) {
                 />
               </FormGroup>
               <FormGroup className="col-md-4">
-                <label>Add Photos</label>
-                <input type="file" className="form-control" />
+                <label>Gig Banner Image</label>
+                <input
+                  type="file"
+                  className="form-control"
+                  onChange={({ target: { files } }) => setBanner(files[0])}
+                />
+              </FormGroup>
+              <FormGroup className="col-md-4">
+                <label>Other Attachments</label>
+                <input
+                  multiple
+                  type="file"
+                  className="form-control"
+                  onChange={({ target: { files } }) => setAttachments(files)}
+                />
               </FormGroup>
             </Form>
-            <CustomButton loading={loading} onClick={handleSubmit}>
+          </CardBody>
+          <CardFooter>
+            <CustomButton
+              color="success"
+              loading={loading}
+              className="me-2"
+              onClick={handleSubmit}
+            >
               Create
             </CustomButton>
-          </CardBody>
+            <CustomButton color="info" loading={loading} onClick={handleSave}>
+              Save as draft
+            </CustomButton>
+          </CardFooter>
         </Card>
       </Container>
     </ImageBackgroundWrapper>

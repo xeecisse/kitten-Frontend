@@ -22,6 +22,8 @@ import { init } from "../../redux/actions/auth";
 import ManageGigs from "../../pages/Gigs/ManageGigs";
 import MyGigs from "../../pages/Gigs/MyGigs";
 import GigsApplicationInfo from "../../pages/Gigs/GigsApplicationInfo";
+import ViewProposal from "../../pages/Gigs/ViewProposal";
+import ManageContracts from "../../pages/contracts/ManageContracts";
 
 function AppNavigation() {
   const navigate = useNavigate();
@@ -36,7 +38,11 @@ function AppNavigation() {
           navigate(initialRoute);
         },
         () => {
-          navigate("/login?rdr=" + initialRoute);
+          if (initialRoute.includes("login")) {
+            navigate("/login");
+          } else {
+            navigate("/login?rdr=" + initialRoute);
+          }
         }
       )
     );
@@ -118,7 +124,7 @@ function AppNavigation() {
     },
     {
       path: "/manage-gigs/view-proposal/:id",
-      element: <GigsApplicationInfo />,
+      element: <ViewProposal />,
     },
     {
       path: "/my-gigs",
@@ -127,6 +133,14 @@ function AppNavigation() {
     {
       path: "/update-profile",
       element: <ModalAlert />,
+    },
+    {
+      path: "/contracts",
+      element: <ManageContracts />,
+    },
+    {
+      path: "/messages",
+      element: <Message />,
     },
   ]);
   return element;

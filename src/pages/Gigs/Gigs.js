@@ -18,10 +18,13 @@ import { fetchApi } from "../../redux/actions/api";
 import { MdPayment } from "react-icons/md";
 import { FaDollarSign } from "react-icons/fa";
 import ImageBackgroundWrapper from "../../components/UI/ImageBackgroundWrapper";
+import SubmitProposal from "./SubmitProposal";
 
 function Gigs({ Model = {} }) {
   const [gigs, setGigs] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [proposalIsOpen, setProposalIsOpen] = useState(false);
+  const [selectedGig, setSelectedGig] = useState({});
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -67,13 +70,14 @@ function Gigs({ Model = {} }) {
                 fontFamily: '"Gill Sans", sans-serif',
               }}
               body
+              className="my-2"
             >
               <div className="container">
                 <div className="row"></div>
 
                 <div className="row align-items-center my-1 my-xs-3 my-sm-3">
                   <div className="md-1 col-sm-3 d-none d-sm-flex d-md-flex d-lg-flex d-xl-flex">
-                    <img src={model_image} className="img-fluid rounded" />
+                    <img src={gig.banner} className="img-fluid rounded" />
                   </div>
 
                   <div className="col-md-5 col-sm-9">
@@ -96,15 +100,33 @@ function Gigs({ Model = {} }) {
                 <FaDollarSign className="me-2 mt-1" />
                 <p>{gig.payment_type}</p>
               </div>
-              <Button
-                color="dark"
-                onClick={() => navigate(`/gig-details/${gig.id}`)}
-              >
-                View
-              </Button>
+              <div className="row">
+                <Button
+                  className="col-6"
+                  color="dark"
+                  onClick={() => navigate(`/gig-details/${gig.id}`)}
+                >
+                  View details
+                </Button>
+                <Button
+                  className="col-6"
+                  color="warning"
+                  onClick={() => {
+                    setProposalIsOpen(true);
+                    setSelectedGig(gig);
+                  }}
+                >
+                  Apply now
+                </Button>
+              </div>
             </Card>
           ))}
       </Container>
+      <SubmitProposal
+        isOpen={proposalIsOpen}
+        toggle={() => setProposalIsOpen((p) => !p)}
+        selectedGig={selectedGig}
+      />
     </ImageBackgroundWrapper>
   );
 }

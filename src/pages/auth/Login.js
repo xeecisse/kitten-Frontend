@@ -25,7 +25,9 @@ function Signup() {
   const dispatch = useDispatch();
   const query = useQuery();
   const rdr = query.get("rdr");
-  const [form, setForm] = useState({});
+  const [form, setForm] = useState({
+    app: "Client",
+  });
   const [loading, setLoading] = useState(false);
 
   const handleChange = ({ target: { name, value } }) =>
@@ -41,7 +43,7 @@ function Signup() {
           if (rdr) {
             navigate(rdr);
           } else {
-            navigate("/model-list");
+            navigate("/");
           }
         },
         () => {
@@ -130,19 +132,20 @@ function Signup() {
                 <hr style={{ padding: 0 }}></hr>
                 <p
                   style={{
-                    fontSize: "13px",
+                    // fontSize: "13px",
                     marginTop: 5,
                     // color: "grey",
                   }}
                 >
                   First time user?{" "}
-                  <span
-                    style={{ cursor: "pointer" }}
-                    onClick={() => navigate("/sign-up")}
-                  >
-                    Create an account here!
-                  </span>{" "}
                 </p>
+                <Button
+                  color="dark"
+                  // style={{ cursor: "pointer" }}
+                  onClick={() => navigate("/sign-up")}
+                >
+                  Create an account here!
+                </Button>
               </div>
             </CardBody>
           </Card>

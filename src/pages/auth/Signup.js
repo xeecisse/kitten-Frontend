@@ -18,11 +18,16 @@ import { useNavigate } from "react-router";
 import CustomButton from "../../components/UI/CustomButton";
 import { fetchApi, postApi } from "../../redux/actions/api";
 import ImageBackgroundWrapper from "../../components/UI/ImageBackgroundWrapper";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/actions/auth";
 
 function Signup() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [accountTypes, setAccountTypes] = useState([]);
-  const [form, setForm] = useState({});
+  const [form, setForm] = useState({
+    app: "Client",
+  });
   const [loading, setLoading] = useState(false);
 
   const getAccountTypes = () => {
@@ -36,9 +41,9 @@ function Signup() {
       .catch((e) => console.log(e));
   };
 
-  useEffect(() => {
-    getAccountTypes();
-  }, []);
+  // useEffect(() => {
+  //   getAccountTypes();
+  // }, []);
 
   const handleChange = ({ target: { name, value } }) =>
     setForm((p) => ({ ...p, [name]: value }));
@@ -47,10 +52,22 @@ function Signup() {
     setLoading(true);
     postApi("users/create", form)
       .then((resp) => {
-        setLoading(false);
         if (resp && resp.success) {
-          alert(resp.message);
+          // alert(resp.message);
+          dispatch(
+            login(
+              form,
+              () => {
+                setLoading(false);
+                navigate("/");
+              },
+              () => {
+                setLoading(false);
+              }
+            )
+          );
         } else {
+          setLoading(false);
           console.log(resp);
           alert(resp.message);
         }
@@ -133,21 +150,15 @@ function Signup() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="my-2">
-                  <SelectInput
-                    label="You are...."
-                    name="account_type"
-                    value={form.account_type}
-                    onChange={handleChange}
-                    options={accountTypes.map((a) => a.name)}
-                  />
-                  {/* <label>You are....</label>
+                {/* <div className="my-2">
+                  <label>You are....</label>
                   <select
                     className="form-control"
                     name="account_type"
                     value={form.account_type}
                     onChange={handleChange}
                   >
+                    <option>--select--</option>
                     {accountTypes
                       .map((a) => a.name)
                       .map((acc, i) => (
@@ -155,8 +166,8 @@ function Signup() {
                           {acc}
                         </option>
                       ))}
-                  </select> */}
-                </div>
+                  </select>
+                </div> */}
 
                 <div className="text-center mt-2">
                   <CustomButton

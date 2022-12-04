@@ -12,11 +12,13 @@ import {
 } from "reactstrap";
 import CustomButton from "../../../components/UI/CustomButton";
 import { apiURL } from "../../../redux/actions/api";
+import { init } from "../../../redux/actions/auth";
 
 export default function CoverPhotoUpload({
   isOpen = false,
   toggle = (f) => f,
 }) {
+  const dispatch = useDispatch();
   const profileInfo = useSelector((state) => state.auth.user);
   const initialRef = React.useRef(null);
   const finalRef = React.useRef(null);
@@ -40,6 +42,7 @@ export default function CoverPhotoUpload({
     })
       .then((raw) => raw.json())
       .then((resp) => {
+        dispatch(init());
         setLoading(false);
         alert(resp.message);
         toggle();

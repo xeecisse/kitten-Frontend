@@ -15,7 +15,11 @@ import {
 import CustomButton from "../../components/UI/CustomButton";
 import { apiURL, postApi } from "../../redux/actions/api";
 
-export default function SubmitProposal({ isOpen = false, toggle = (f) => f }) {
+export default function SubmitProposal({
+  isOpen = false,
+  toggle = (f) => f,
+  selectedGig = {},
+}) {
   const { id } = useParams();
   const profileInfo = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
@@ -47,7 +51,7 @@ export default function SubmitProposal({ isOpen = false, toggle = (f) => f }) {
       `${profileInfo.firstname} ${profileInfo.lastname}`
     );
 
-    fetch(`${apiURL}/gigs/apply/${id}`, {
+    fetch(`${apiURL}/gigs/apply/${id ? selectedGig.id : id}`, {
       method: "POST",
       body: formData,
     })
