@@ -42,7 +42,7 @@ function Signup() {
         form,
         () => {
           setLoading(false);
-          if (rdr) {
+          if (rdr && !rdr.includes('login') && !rdr.includes('sign-up')) {
             navigate(rdr);
           } else {
             navigate("/");

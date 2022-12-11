@@ -15,6 +15,7 @@
     "react-facebook-login": "^4.1.1",
     "react-google-login": "^5.2.2",
     "react-icons": "^4.6.0",
+    "react-image-crop": "^10.0.9",
     "react-instagram-login": "^1.4.0",
     "react-redux": "^8.0.5",
     "react-router": "^6.4.2",

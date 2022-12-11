@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import CustomButton from "../../components/UI/CustomButton";
+import React, { useEffect, useState } from 'react'
+import CustomButton from '../../components/UI/CustomButton'
 
-import bg_2 from "../../img/bg_2.jpg";
-import model_image from "../../img/bg_2.jpg";
-import ProfileDetails from "./ProfileDetails";
+import bg_2 from '../../img/bg_2.jpg'
+import model_image from '../../img/bg_2.jpg'
+import ProfileDetails from './ProfileDetails'
 import {
   FaEnvelope,
   FaBookmark,
@@ -11,48 +11,56 @@ import {
   FaUpload,
   FaPlus,
   FaEdit,
-} from "react-icons/fa";
-import { MdRateReview } from "react-icons/md";
-import { Navigate, useNavigate, useParams } from "react-router";
-import { Button, Spinner } from "reactstrap";
-import { useDispatch, useSelector } from "react-redux";
-import { getAgeFromDOB } from "../../utils";
-import UpdateProfile from "./UpdateProfile";
-import CoverPhotoUpload from "./components/CoverPhotoUpload";
-import { fetchApi } from "../../redux/actions/api";
-import ImageBackgroundWrapper from "../../components/UI/ImageBackgroundWrapper";
+} from 'react-icons/fa'
+import { MdRateReview } from 'react-icons/md'
+import { Navigate, useNavigate, useParams } from 'react-router'
+import { Button, Spinner } from 'reactstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import { getAgeFromDOB } from '../../utils'
+import UpdateProfile from './UpdateProfile'
+import CoverPhotoUpload from './components/CoverPhotoUpload'
+import { fetchApi } from '../../redux/actions/api'
+import ImageBackgroundWrapper from '../../components/UI/ImageBackgroundWrapper'
+import { useCallback } from 'react'
 
 function Profile() {
   // const dispatch = useDispatch()
-  const navigate = useNavigate();
-  const model_id = useParams().model_id || null;
-  const user = useSelector((state) => state.auth.user);
-  const [profileInfo, setProfileInfo] = useState({});
-  const notSelf = model_id && model_id !== user.id ? true : false;
+  const navigate = useNavigate()
+  const model_id = useParams().model_id || null
+  const user = useSelector((state) => state.auth.user)
+  const [profileInfo, setProfileInfo] = useState({})
+  const notSelf = model_id && model_id !== user.id ? true : false
 
-  const [editModalIsOpen, setEditModalOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [coverImageUploadModalOpen, setCoverImageUploadModalOpen] =
-    useState(false);
+  const [editModalIsOpen, setEditModalOpen] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [coverImageUploadModalOpen, setCoverImageUploadModalOpen] = useState(
+    false,
+  )
 
-  useEffect(() => {
-    setLoading(true);
+  const getProfileInfo = useCallback(() => {
+    setLoading(true)
     fetchApi(`profile/details/${notSelf ? model_id : user.id}`)
       .then((resp) => {
-        setLoading(false);
+        setLoading(false)
         if (resp.data && resp.data.length) {
-          setProfileInfo(resp.data[0]);
+          setProfileInfo(resp.data[0])
         }
       })
       .catch((e) => {
-        setLoading(false);
-        console.log(e);
-      });
-  }, []);
+        setLoading(false)
+        console.log(e)
+      })
+  }, [notSelf, model_id, user.id])
+
+  useEffect(() => {
+    getProfileInfo()
+  }, [getProfileInfo])
 
   return (
     <ImageBackgroundWrapper>
-      {/* {JSON.stringify(profileInfo)} */}
+      {/* <p className="text-white">
+        {JSON.stringify({ notSelf, model_id, id: user.id })}
+      </p> */}
       <div className="container">
         <div className="row">
           <div className="offset-md-3 col-md-6 p-2">
@@ -70,7 +78,9 @@ function Profile() {
                   className="me-1"
                   onClick={() => setCoverImageUploadModalOpen(true)}
                 >
-                  <FaUpload />
+                  {' '}
+                  Update cover picture
+                  <FaUpload className="ms-2" />
                 </Button>
               </div>
             )}
@@ -124,7 +134,7 @@ function Profile() {
               <CustomButton
                 color="dark"
                 className="col-6 col-md-3 col-sm-4 mx-1"
-                onClick={() => navigate("/create-gig")}
+                onClick={() => navigate('/create-gig')}
               >
                 <FaPlus color="white" size={16} className="mr-2" /> Create Gig
               </CustomButton>
@@ -148,9 +158,11 @@ function Profile() {
       <CoverPhotoUpload
         isOpen={coverImageUploadModalOpen}
         toggle={() => setCoverImageUploadModalOpen((p) => !p)}
+        getProfileInfo={getProfileInfo}
+        profileInfo={profileInfo}
       />
     </ImageBackgroundWrapper>
-  );
+  )
 }
 
-export default Profile;
+export default Profile

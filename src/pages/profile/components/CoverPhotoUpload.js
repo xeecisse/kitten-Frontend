@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   Button,
   Collapse,
@@ -9,50 +9,52 @@ import {
   ModalBody,
   ModalFooter,
   ModalHeader,
-} from "reactstrap";
-import CustomButton from "../../../components/UI/CustomButton";
-import { apiURL } from "../../../redux/actions/api";
-import { init } from "../../../redux/actions/auth";
+} from 'reactstrap'
+import CustomButton from '../../../components/UI/CustomButton'
+import ImagePicker from '../../../components/UI/image-crop/ImagePicker'
+import { apiURL } from '../../../redux/actions/api'
+import { init } from '../../../redux/actions/auth'
 
 export default function CoverPhotoUpload({
   isOpen = false,
   toggle = (f) => f,
+  getProfileInfo = (f) => f,
+  profileInfo={}
 }) {
-  const dispatch = useDispatch();
-  const profileInfo = useSelector((state) => state.auth.user);
-  const initialRef = React.useRef(null);
-  const finalRef = React.useRef(null);
+  // const profileInfo = useSelector((state) => state.auth.user)
+  const initialRef = React.useRef(null)
+  const finalRef = React.useRef(null)
 
-  const [loading, setLoading] = useState(false);
-  const [image, setImage] = useState([]);
+  const [loading, setLoading] = useState(false)
+  const [image, setImage] = useState(null)
 
   const handleFileUpload = ({ target: { files } }) => {
-    setImage(files[0]);
-  };
+    setImage(files[0])
+  }
 
   const handleSubmit = () => {
-    setLoading(true);
-    const formData = new FormData();
-    formData.append("cover_image", image);
-    formData.append("user_id", profileInfo.id);
+    setLoading(true)
+    const formData = new FormData()
+    formData.append('cover_image', image)
+    formData.append('user_id', profileInfo.id)
 
     fetch(`${apiURL}/profile/cover_image`, {
-      method: "POST",
+      method: 'POST',
       body: formData,
     })
       .then((raw) => raw.json())
       .then((resp) => {
-        dispatch(init());
-        setLoading(false);
-        alert(resp.message);
-        toggle();
+        setLoading(false)
+        getProfileInfo()
+        alert(resp.message)
+        toggle()
       })
       .catch((e) => {
-        setLoading(false);
-        console.log(e);
-        alert(e.message);
-      });
-  };
+        setLoading(false)
+        console.log(e)
+        alert(e.message)
+      })
+  }
 
   return (
     <>
@@ -65,22 +67,35 @@ export default function CoverPhotoUpload({
         <ModalHeader toggle={toggle}>Upload Cover Image</ModalHeader>
         <ModalBody pb={6}>
           {/* {JSON.stringify(photos)} */}
-          <FormGroup>
+          {/* <FormGroup>
             <label>Select Cover Photo</label>
             <input
               className="form-control"
               type={"file"}
               onChange={handleFileUpload}
             />
-          </FormGroup>
+          </FormGroup> */}
+          <ImagePicker onSave={(img) => setImage(img)} />
         </ModalBody>
 
         <ModalFooter>
-          <CustomButton loading={loading} onClick={handleSubmit}>
+          <CustomButton
+            loading={loading}
+            disabled={!image}
+            // title={!image ? 'Save crop before submitting' : ''}
+            onClick={() => {
+              if (!image) {
+                alert('Save crop before submitting')
+              } else {
+                handleSubmit()
+              }
+            }}
+            color="dark"
+          >
             Submit
           </CustomButton>
         </ModalFooter>
       </Modal>
     </>
-  );
+  )
 }
