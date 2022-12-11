@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react'
 import {
   Button,
   Card,
@@ -8,39 +8,52 @@ import {
   FormGroup,
   Input,
   Spinner,
-} from "reactstrap";
-import model_image from "../../img/bg_2.jpg";
-import bg_2 from "../../img/bg_2.jpg";
-import { IoLocationSharp } from "react-icons/ai";
-import { BsFillGeoAltFill, BsFillAlarmFill, BsCalendar } from "react-icons/bs";
-import { useNavigate } from "react-router";
-import { fetchApi } from "../../redux/actions/api";
-import { MdPayment } from "react-icons/md";
-import { FaDollarSign } from "react-icons/fa";
-import ImageBackgroundWrapper from "../../components/UI/ImageBackgroundWrapper";
-import SubmitProposal from "./SubmitProposal";
+} from 'reactstrap'
+import model_image from '../../img/bg_2.jpg'
+import bg_2 from '../../img/bg_2.jpg'
+import { IoLocationSharp } from 'react-icons/ai'
+import { BsFillGeoAltFill, BsFillAlarmFill, BsCalendar } from 'react-icons/bs'
+import { useNavigate } from 'react-router'
+import { fetchApi } from '../../redux/actions/api'
+import { MdPayment } from 'react-icons/md'
+import { FaDollarSign } from 'react-icons/fa'
+import ImageBackgroundWrapper from '../../components/UI/ImageBackgroundWrapper'
+import SubmitProposal from './SubmitProposal'
+import InactiveAccountModal from '../auth/InactiveAccountModal'
+import { useSelector } from 'react-redux'
 
 function Gigs({ Model = {} }) {
-  const [gigs, setGigs] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [proposalIsOpen, setProposalIsOpen] = useState(false);
-  const [selectedGig, setSelectedGig] = useState({});
-  const navigate = useNavigate();
+  const user = useSelector((s) => s.auth.user)
+  const [gigs, setGigs] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [proposalIsOpen, setProposalIsOpen] = useState(false)
+  const [selectedGig, setSelectedGig] = useState({})
+  const navigate = useNavigate()
+  const [inavtiveModal, setInactiveModal] = useState(false)
 
   useEffect(() => {
-    setLoading(true);
-    fetchApi("gigs/by-status")
+    setLoading(true)
+    fetchApi('gigs/by-status')
       .then((resp) => {
-        setLoading(false);
+        setLoading(false)
         if (resp.success && resp.data) {
-          setGigs(resp.data);
+          setGigs(resp.data)
         }
       })
       .catch((err) => {
-        console.error(err);
-        setLoading(false);
-      });
-  }, []);
+        console.error(err)
+        setLoading(false)
+      })
+  }, [])
+
+  useEffect(() => {
+    if (user && user.status === 'Incomplete') {
+      let remMode = localStorage.getItem('@@llna_profile_rem')
+      if (!remMode) {
+        setInactiveModal(true)
+      }
+    }
+  }, [user])
 
   return (
     <ImageBackgroundWrapper>
@@ -48,7 +61,7 @@ function Gigs({ Model = {} }) {
         <Form>
           <div className="row">
             <Col md={8}>
-              <Input placeholder="Search for gigs" style={{ margin: "10px" }} />
+              <Input placeholder="Search for gigs" style={{ margin: '10px' }} />
             </Col>
 
             <Col md={3}>
@@ -60,6 +73,8 @@ function Gigs({ Model = {} }) {
           </div>
         </Form>
 
+        {/* <div className='text-white'>{JSON.stringify(user.status)}</div> */}
+
         {loading && <Spinner color="white" />}
 
         {gigs &&
@@ -67,9 +82,9 @@ function Gigs({ Model = {} }) {
             <Card
               key={index}
               style={{
-                border: "none",
-                backgroundColor: "rgba(127, 205, 218, 0.1)",
-                color: "white",
+                border: 'none',
+                backgroundColor: 'rgba(127, 205, 218, 0.1)',
+                color: 'white',
                 fontFamily: '"Gill Sans", sans-serif',
               }}
               body
@@ -115,8 +130,8 @@ function Gigs({ Model = {} }) {
                   className="col-6"
                   color="warning"
                   onClick={() => {
-                    setProposalIsOpen(true);
-                    setSelectedGig(gig);
+                    setProposalIsOpen(true)
+                    setSelectedGig(gig)
                   }}
                 >
                   Apply now
@@ -130,8 +145,12 @@ function Gigs({ Model = {} }) {
         toggle={() => setProposalIsOpen((p) => !p)}
         selectedGig={selectedGig}
       />
+      <InactiveAccountModal
+        isOpen={inavtiveModal}
+        toggle={() => setInactiveModal((p) => !p)}
+      />
     </ImageBackgroundWrapper>
-  );
+  )
 }
 
-export default Gigs;
+export default Gigs
