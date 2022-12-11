@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 import {
   Button,
   Card,
@@ -10,111 +10,114 @@ import {
   Label,
   Row,
   Spinner,
-} from "reactstrap";
-import bg1 from "../../img/bg_1.jpg";
-import "./Signup.css";
-import { useNavigate } from "react-router";
-import CustomButton from "../../components/UI/CustomButton";
-import { useDispatch } from "react-redux";
-import { login } from "../../redux/actions/auth";
-import { useQuery } from "../../hooks";
-import ImageBackgroundWrapper from "../../components/UI/ImageBackgroundWrapper";
-import GoogleLogin from "react-google-login";
-import { GOGLE_CLIENT_ID } from "../../utils/config";
+} from 'reactstrap'
+import bg1 from '../../img/bg_1.jpg'
+import './Signup.css'
+import { useNavigate } from 'react-router'
+import CustomButton from '../../components/UI/CustomButton'
+import { useDispatch } from 'react-redux'
+import { login } from '../../redux/actions/auth'
+import { useQuery } from '../../hooks'
+import ImageBackgroundWrapper from '../../components/UI/ImageBackgroundWrapper'
+import GoogleLogin from 'react-google-login'
+import { GOGLE_CLIENT_ID } from '../../utils/config'
 
 function Signup() {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const query = useQuery();
-  const rdr = query.get("rdr");
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const query = useQuery()
+  const rdr = query.get('rdr')
   const [form, setForm] = useState({
-    app: "Model",
-  });
-  const [loading, setLoading] = useState(false);
+    app: 'Model',
+  })
+  const [loading, setLoading] = useState(false)
 
   const handleChange = ({ target: { name, value } }) =>
-    setForm((p) => ({ ...p, [name]: value }));
+    setForm((p) => ({ ...p, [name]: value }))
 
-  const handleLogin = () => {
-    setLoading(true);
+  const handleLogin = (e) => {
+    e.preventDefault()
+    setLoading(true)
     dispatch(
       login(
         form,
         () => {
-          setLoading(false);
+          setLoading(false)
           if (rdr && !rdr.includes('login') && !rdr.includes('sign-up')) {
-            navigate(rdr);
+            navigate(rdr)
           } else {
-            navigate("/");
+            navigate('/')
           }
         },
         () => {
-          setLoading(false);
-        }
-      )
-    );
-  };
+          setLoading(false)
+        },
+      ),
+    )
+  }
 
   return (
     <ImageBackgroundWrapper
       bg={bg1}
       style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
       }}
     >
       <Row>
         <Col className="offset-md-2" md={8}>
           <Card
             style={{
-              borderRadius: "0",
-              border: "none",
-              backgroundColor: "rgba(127, 205, 218, 0.1)",
-              color: "white",
+              borderRadius: '0',
+              border: 'none',
+              backgroundColor: 'rgba(127, 205, 218, 0.1)',
+              color: 'white',
               fontFamily: 'font-family: "Gill Sans", sans-serif;',
             }}
           >
-            <CardHeader className="h4 text-center">Login</CardHeader>
+            <CardHeader className="h4 text-center">Welcome back</CardHeader>
             <CardBody>
-              <Row className="login-row mt-2">
-                <div className="my-2">
-                  <label>Email</label>
-                  <Input
-                    type="email"
-                    required
-                    placeholder="example@mail.com"
-                    name="email"
-                    value={form.email}
-                    onChange={handleChange}
-                  />
+              <form onSubmit={handleLogin}>
+                <Row className="login-row mt-2">
+                  <div className="my-2">
+                    <label>Email</label>
+                    <Input
+                      type="email"
+                      required
+                      placeholder="example@mail.com"
+                      name="email"
+                      value={form.email}
+                      onChange={handleChange}
+                    />
+                  </div>
+
+                  <div className="my-2">
+                    <label>Password</label>
+                    <Input
+                      type="password"
+                      placeholder="*******"
+                      required
+                      name="password"
+                      value={form.password}
+                      onChange={handleChange}
+                    />
+                  </div>
+                </Row>
+                <div className="text-center">
+                  <CustomButton
+                    className="m-1 px-5"
+                    // onClick={handleLogin}
+                    color="dark"
+                    type="submit"
+                    loading={loading}
+                  >
+                    Login
+                  </CustomButton>
                 </div>
 
-                <div className="my-2">
-                  <label>Password</label>
-                  <Input
-                    type="password"
-                    placeholder="*******"
-                    required
-                    name="password"
-                    value={form.password}
-                    onChange={handleChange}
-                  />
-                </div>
-              </Row>
-              <div className="text-center">
-                <CustomButton
-                  className="m-1 px-5"
-                  onClick={handleLogin}
-                  color="dark"
-                  loading={loading}
-                >
-                  Submit
-                </CustomButton>
-              </div>
-
-              <div>
+                {/* <div>
                 <hr />
                 <p className="text-center">Continue with </p>
                 <div className="d-flex flex-direction-column mt-2 justify-content-center">
@@ -143,33 +146,34 @@ function Signup() {
                     Instagram
                   </CustomButton>
                 </div>
-              </div>
+              </div> */}
 
-              <div className="text-center">
-                <hr style={{ padding: 0 }}></hr>
-                <p
-                  style={{
-                    // fontSize: "13px",
-                    marginTop: 5,
-                    // color: "grey",
-                  }}
-                >
-                  First time user?{" "}
-                </p>
-                <Button
-                  color="dark"
-                  // style={{ cursor: "pointer" }}
-                  onClick={() => navigate("/sign-up")}
-                >
-                  Create an account here!
-                </Button>
-              </div>
+                <div className="text-center">
+                  <hr style={{ padding: 0 }}></hr>
+                  <p
+                    style={{
+                      // fontSize: "13px",
+                      marginTop: 5,
+                      // color: "grey",
+                    }}
+                  >
+                    First time user?{' '}
+                  </p>
+                  <Button
+                    color="dark"
+                    // style={{ cursor: "pointer" }}
+                    onClick={() => navigate('/sign-up')}
+                  >
+                    Create an account here!
+                  </Button>
+                </div>
+              </form>
             </CardBody>
           </Card>
         </Col>
       </Row>
     </ImageBackgroundWrapper>
-  );
+  )
 }
 
-export default Signup;
+export default Signup

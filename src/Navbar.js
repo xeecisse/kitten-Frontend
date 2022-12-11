@@ -42,7 +42,7 @@ function NavbarComponent(args) {
         <div className="row mx-0">
           <Input
             className="form-control my-1 col-md-12"
-            placeholder="Search for model"
+            placeholder="Search for jobs"
           />
         </div>
         <NavbarToggler onClick={toggle} />

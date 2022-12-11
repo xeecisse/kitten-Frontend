@@ -1,74 +1,76 @@
-import React, { useEffect } from "react";
-import { Outlet, useLocation, useNavigate, useRoutes } from "react-router";
-import Signup from "../../pages/auth/Signup";
+import React, { useEffect } from 'react'
+import { Outlet, useLocation, useNavigate, useRoutes } from 'react-router'
+import Signup from '../../pages/auth/Signup'
 // import MenuIndex from '../../Pages/Sidebar/MenuIndex';
 // import Welcome from '../../Pages/Welcome';
-import Login from "../../pages/auth/Login";
-import ModelList from "../../pages/models/ModelList";
-import Model from "../../pages/Model";
-import Profile from "../../pages/profile/Profile";
-import ViewModel from "../../pages/models/ViewModel";
-import Message from "../../pages/message";
-import Reviews from "../../pages/reviews";
-import ErrorPage from "../../pages/error-page";
-import Gigs from "../../pages/Gigs/Gigs";
-import ViewGigs from "../../pages/Gigs/ViewGigs";
-import Apply from "../../pages/Gigs/Apply";
-import Create from "../../pages/Gigs/Create";
-import Update from "../modal";
-import ModalAlert from "../modal";
-import { useDispatch } from "react-redux";
-import { init } from "../../redux/actions/auth";
-import ManageGigs from "../../pages/Gigs/ManageGigs";
-import MyGigs from "../../pages/Gigs/MyGigs";
-import GigsApplicationInfo from "../../pages/Gigs/GigsApplicationInfo";
-import ViewProposal from "../../pages/Gigs/ViewProposal";
-import ManageContracts from "../../pages/contracts/ManageContracts";
+import Login from '../../pages/auth/Login'
+import ModelList from '../../pages/models/ModelList'
+import Model from '../../pages/Model'
+import Profile from '../../pages/profile/Profile'
+import ViewModel from '../../pages/models/ViewModel'
+import Message from '../../pages/message'
+import Reviews from '../../pages/reviews'
+import ErrorPage from '../../pages/error-page'
+import Gigs from '../../pages/Gigs/Gigs'
+import ViewGigs from '../../pages/Gigs/ViewGigs'
+import Apply from '../../pages/Gigs/Apply'
+import Create from '../../pages/Gigs/Create'
+import Update from '../modal'
+import ModalAlert from '../modal'
+import { useDispatch } from 'react-redux'
+import { init } from '../../redux/actions/auth'
+import ManageGigs from '../../pages/Gigs/ManageGigs'
+import MyGigs from '../../pages/Gigs/MyGigs'
+import GigsApplicationInfo from '../../pages/Gigs/GigsApplicationInfo'
+import ViewProposal from '../../pages/Gigs/ViewProposal'
+import ManageContracts from '../../pages/contracts/ManageContracts'
 
 function AppNavigation() {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const dispatch = useDispatch();
+  const navigate = useNavigate()
+  const location = useLocation()
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    const initialRoute = location.pathname;
+    const initialRoute = location.pathname
     dispatch(
       init(
         () => {
-          navigate(initialRoute);
+          navigate(initialRoute)
         },
         () => {
-          if (initialRoute.includes("login")) {
-            navigate("/login");
+          if (initialRoute.includes('login')) {
+            navigate('/login')
+          } else if (initialRoute.includes('sign-up')) {
+            console.log('signup')
           } else {
-            navigate("/login?rdr=" + initialRoute);
+            navigate('/login?rdr=' + initialRoute)
           }
-        }
-      )
-    );
-  }, []);
+        },
+      ),
+    )
+  }, [dispatch, location.pathname, navigate])
 
   let element = useRoutes([
     {
-      path: "/",
+      path: '/',
       element: <Gigs />,
       // errorElement: <ErrorPage />,
     },
     {
-      path: "/sign-up",
+      path: '/sign-up',
       element: <Signup />,
     },
     {
-      path: "/login",
+      path: '/login',
       element: <Login />,
     },
     {
-      path: "/model-list",
+      path: '/model-list',
       element: <Outlet />,
       children: [
-        { path: "/model-list", element: <ModelList />, index: true },
+        { path: '/model-list', element: <ModelList />, index: true },
         {
-          path: "view-model/:model_id",
+          path: 'view-model/:model_id',
           element: <Profile />,
           // element: <ViewModel />,
           // element: <Outlet />,
@@ -85,65 +87,65 @@ function AppNavigation() {
           // ],
         },
         {
-          path: "view-model/:model_id/message",
+          path: 'view-model/:model_id/message',
           element: <Message />,
         },
         {
-          path: "view-model/:model_id/reviews",
+          path: 'view-model/:model_id/reviews',
           element: <Reviews />,
         },
       ],
     },
     {
-      path: "profile",
+      path: 'profile',
       element: <Profile />,
     },
     {
-      path: "/gigs",
+      path: '/gigs',
       element: <Gigs />,
     },
     {
-      path: "/gig-details/:id",
+      path: '/gig-details/:id',
       element: <ViewGigs />,
     },
     {
-      path: "/submit-proposal/:id",
+      path: '/submit-proposal/:id',
       element: <Apply />,
     },
     {
-      path: "/create-gig",
+      path: '/create-gig',
       element: <Create />,
     },
     {
-      path: "/manage-gigs",
+      path: '/manage-gigs',
       element: <ManageGigs />,
     },
     {
-      path: "/manage-gigs/view/:id",
+      path: '/manage-gigs/view/:id',
       element: <GigsApplicationInfo />,
     },
     {
-      path: "/manage-gigs/view-proposal/:id",
+      path: '/manage-gigs/view-proposal/:id',
       element: <ViewProposal />,
     },
     {
-      path: "/my-gigs",
+      path: '/my-gigs',
       element: <MyGigs />,
     },
     {
-      path: "/update-profile",
+      path: '/update-profile',
       element: <ModalAlert />,
     },
     {
-      path: "/contracts",
+      path: '/contracts',
       element: <ManageContracts />,
     },
     {
-      path: "/messages",
+      path: '/messages',
       element: <Message />,
     },
-  ]);
-  return element;
+  ])
+  return element
 }
 
-export default AppNavigation;
+export default AppNavigation

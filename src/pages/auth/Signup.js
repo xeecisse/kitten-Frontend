@@ -187,7 +187,7 @@ function Signup() {
                   </CustomButton>
                 </div>
 
-                <div>
+                {/* <div>
                   <hr />
                   <p className="text-center">Signup with </p>
                   <div className="d-flex flex-direction-column mt-2 justify-content-center">
@@ -201,7 +201,7 @@ function Signup() {
                       Instagram
                     </CustomButton>
                   </div>
-                </div>
+                </div> */}
 
                 <div className="text-center">
                   <hr style={{ padding: 0 }}></hr>
