@@ -9,6 +9,8 @@ import {
   ModalFooter,
   ModalHeader,
 } from "reactstrap";
+import SelectInput from "../../../components/UI/SelectInput";
+import { states } from "../States";
 import Collapsible from "./Collapsible";
 
 export default function ContactInfo({
@@ -53,16 +55,34 @@ export default function ContactInfo({
 
       <FormGroup mt={4}>
         <label>State</label>
-        <select
+        <SelectInput
           className="form-control"
           name="state"
           value={form.state}
           onChange={handleChange}
-        >
-          <option>--Select--</option>
+          options={states}
+        />
+        {/* <option>--Select--</option>
           <option value={"Kano"}>Kano</option>
           <option value={"Abuja"}>Abuja</option>
-        </select>
+          <option value={"Lagos"}>Lagos</option>
+          <option value={"Kaduna"}>Kaduna</option>
+          <option value={"Katsina"}>Katsina</option>
+          <option value={"Edo"}>Edo</option>
+          <option value={"Akwa-ibom"}>Akwa-ibom</option>
+          <option value={"Bauchi"}>Bauchi</option>
+          <option value={"Bayelsa"}>Bayelsa</option>
+          <option value={"Benue"}>Benue</option>
+          <option value={"Borno"}>Borno</option>
+          <option value={"Cross-river"}>Cross-river</option>
+          <option value={"Adamawa"}>Adamawa</option>
+          <option value={"Adamawa"}>Adamawa</option>
+          <option value={"Adamawa"}>Adamawa</option>
+          <option value={"Adamawa"}>Adamawa</option>
+          <option value={"Adamawa"}>Adamawa</option>
+          <option value={"Adamawa"}>Adamawa</option>
+          <option value={"Adamawa"}>Adamawa</option>
+          <option value={"Adamawa"}>Adamawa</option> */}
       </FormGroup>
 
       <FormGroup mt={4}>
