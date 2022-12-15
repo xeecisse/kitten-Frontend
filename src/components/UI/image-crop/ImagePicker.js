@@ -256,18 +256,19 @@ export default function ImagePicker(props) {
         </ReactCrop>
       )}
       <Button
-        onClick={() =>
-          getCroppedImg(imgRef.current, completedCrop, 'cover_photo.jpg').then(
+        onClick={() =>{
+          let timestamp = Date.now()
+          getCroppedImg(imgRef.current, completedCrop, `cover_photo${timestamp}.jpg`).then(
             (resp) => {
               //   console.log(resp)
               // const blobUrl = URL.createObjectURL(resp)
-              const file = new File([resp], 'cover_photo.jpg')
+              const file = new File([resp], `cover_photo${timestamp}.jpg`)
               //   console.log(blobUrl)
               props.onSave(file)
               setSaved(true)
             },
           )
-        }
+        }}
       >
         Save
       </Button>
