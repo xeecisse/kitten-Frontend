@@ -42,7 +42,7 @@ function Apply() {
 
   return (
     <ImageBackgroundWrapper>
-      <div className="mx-5">
+      <div className="mx-4">
         <Col md={10}>
           <Card
             style={{
