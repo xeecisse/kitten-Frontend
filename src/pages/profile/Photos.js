@@ -1,4 +1,4 @@
-import { Col, Row } from "reactstrap";
+import { Col, Row, Spinner } from "reactstrap";
 import model_image from "../../img/bg_1.jpg";
 import model_image2 from "../../img/bg_5.jpg";
 import model_image3 from "../../img/bg_2.jpg";
@@ -8,27 +8,68 @@ import model_image6 from "../../img/image_1.jpg";
 import model_image7 from "../../img/image_2.jpg";
 import ImageCard from "./ImageCard";
 import "./grid.css";
+import { useEffect, useState } from "react";
+import CustomButton from "../../components/UI/CustomButton";
+import { FaUpload } from "react-icons/fa";
+import PhotoUpload from "./components/PhotoUpload";
+import { fetchApi } from "../../redux/actions/api";
+import { useSelector } from "react-redux";
 
-// export default () => {
-//     return (
-//         <div>
-//             {/* <h3 className="text-center">Photos</h3> */}
+export default ({ notSelf = true, profileInfo = {} }) => {
+  const [loading, setLoading] = useState(false);
+  const [photoUploadModalIsOpen, setPhotoUploadModalIsOpen] = useState(false);
+  const [imagesList, setImagesList] = useState([]);
 
-//             <Row className="d-flex flex-row flex-wrap">
-//                 {[1,2,3,4,5,6,7,8,9,10].map(i => (
-//                     <Col md={6} className='my-2' key={i}>
-//                         <img src={i%2==0 ? model_image:model_image2} className='img-fluid rounded' />
-//                     </Col>
-//                 ))}
-//             </Row>
-//         </div>
-//     )
-// }
+  useEffect(() => {
+    setLoading(true);
+    fetchApi(`get-media?user_id=${profileInfo.id}&resource_type=photos`)
+      .then((resp) => {
+        setLoading(false);
+        console.log(resp);
+        if (resp.success) {
+          setImagesList(resp.data);
+        }
+      })
+      .catch(() => {
+        setLoading(false);
+      });
+  }, [profileInfo.id]);
 
-export default ({ images = [] }) => {
-  const renderImages = images.map((image, i) => {
+  const renderImages = imagesList.map((image, i) => {
     return <ImageCard key={i} image={image} />;
   });
 
-  return <div className="image-list">{renderImages}</div>;
+  return (
+    <div>
+      {notSelf ? null : (
+        <div className="d-flex flex-direction-row justify-content-end my-1">
+          <CustomButton
+            color="dark"
+            onClick={() => setPhotoUploadModalIsOpen(true)}
+          >
+            <FaUpload /> Upload Photos
+          </CustomButton>
+        </div>
+      )}
+
+      {loading && (
+        <center className="my-2">
+          <Spinner color="white" />
+        </center>
+      )}
+
+      {imagesList.length ? null : (
+        <p className="text-center text-white my-2">
+          No image found, check back later
+        </p>
+      )}
+
+      <div className="image-list">{renderImages}</div>
+      <PhotoUpload
+        isOpen={photoUploadModalIsOpen}
+        onClose={() => setPhotoUploadModalIsOpen(false)}
+        onOpen={() => setPhotoUploadModalIsOpen(true)}
+      />
+    </div>
+  );
 };

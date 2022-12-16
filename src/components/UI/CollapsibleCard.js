@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
-import { ChevronDown, ChevronUp } from 'react-feather'
-import { Card, CardHeader, CardBody, Collapse } from 'reactstrap'
+import React, { useState } from "react";
+import {} from "react-icons";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { Card, CardHeader, CardBody, Collapse } from "reactstrap";
 
 function CollapsibleCard(props) {
-  const [isOpen, toggle] = useState(props.defaultOpen || false)
+  const [isOpen, toggle] = useState(props.defaultOpen || false);
 
   return (
     <Card className="mb-1">
@@ -12,17 +13,17 @@ function CollapsibleCard(props) {
         onClick={() => {
           if (!props.fixed) {
             if (props.toggle) {
-              props.toggle()
+              props.toggle();
             } else {
-              toggle((d) => !d)
+              toggle((d) => !d);
             }
           }
         }}
         style={{
-          cursor: 'pointer',
-          display: 'flex',
-          alignItems: 'center',
-          backgroundColor: props.color ? props.color : '#0069D9',
+          cursor: "pointer",
+          display: "flex",
+          alignItems: "center",
+          backgroundColor: props.color ? props.color : "#0069D9",
           //   height: 40,
         }}
         className="d-flex flex-direction-row justify-content-between py-1"
@@ -34,9 +35,9 @@ function CollapsibleCard(props) {
         {!props.fixed ? (
           <>
             {!isOpen ? (
-              <ChevronDown className="text-white" />
+              <FaChevronDown className="text-white" />
             ) : (
-              <ChevronUp className="text-white" />
+              <FaChevronUp className="text-white" />
             )}
           </>
         ) : null}
@@ -47,7 +48,7 @@ function CollapsibleCard(props) {
         </CardBody>
       </Collapse>
     </Card>
-  )
+  );
 }
 
-export default CollapsibleCard
+export default CollapsibleCard;

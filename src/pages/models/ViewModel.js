@@ -8,23 +8,14 @@ import { FaEnvelope, FaBookmark } from "react-icons/fa";
 import { MdRateReview } from "react-icons/md";
 import { useNavigate, useParams } from "react-router";
 import modelData from "./sample_data.json";
+import ImageBackgroundWrapper from "../../components/UI/ImageBackgroundWrapper";
 
 function ViewModel() {
   const { model_id } = useParams();
   const navigate = useNavigate();
   const modelInfo = modelData.models.filter((a) => a.id === model_id)[0];
   return (
-    <div
-      className="m-0"
-      style={{
-        backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ),url(${bg_2})`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        height: "100vh",
-        overflow: "scroll",
-      }}
-    >
+    <ImageBackgroundWrapper>
       <div className="container">
         <div className="row">
           <div className="offset-md-3 col-md-6 p-2">
@@ -74,7 +65,7 @@ function ViewModel() {
           </div>
         </div>
       </div>
-    </div>
+    </ImageBackgroundWrapper>
   );
 }
 

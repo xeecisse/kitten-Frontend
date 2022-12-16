@@ -1,14 +1,14 @@
-import React from 'react'
-import { Typeahead } from 'react-bootstrap-typeahead'
-import { Edit } from 'react-feather'
+import React from "react";
+import { Typeahead } from "react-bootstrap-typeahead";
+import { Edit } from "react-feather";
 
 function AutoCompleteWithMultipleSelection(props) {
-  const { editable = true } = props
+  const { editable = true } = props;
   return (
     <div className={props.containerClass}>
-      {props.label === '' ? null : (
+      {props.label === "" ? null : (
         <label className={props.labelClass}>
-          {props.label}{' '}
+          {props.label}{" "}
           {props.required && <span className="text-danger">*</span>}
         </label>
       )}
@@ -28,13 +28,13 @@ function AutoCompleteWithMultipleSelection(props) {
       ) : (
         <div className="form-control d-flex flex-row justify-content-between">
           {props.value}
-          <span style={{ cursor: 'pointer' }} onClick={props.toggleEdit}>
+          <span style={{ cursor: "pointer" }} onClick={props.toggleEdit}>
             <Edit className="text-primary" size={20} />
           </span>
         </div>
       )}
     </div>
-  )
+  );
 }
 
-export default AutoCompleteWithMultipleSelection
+export default AutoCompleteWithMultipleSelection;

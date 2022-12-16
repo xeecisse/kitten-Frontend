@@ -21,7 +21,7 @@ import Photos from "./Photos";
 import Portfolio from "./Portfolio";
 import Videos from "./Videos";
 
-function ProfileDetails({ modelInfo = {} }) {
+function ProfileDetails({ modelInfo = {}, profileInfo = {}, notSelf = true }) {
   const [activeTab, setActiveTab] = useState("1");
   //   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -98,16 +98,20 @@ function ProfileDetails({ modelInfo = {} }) {
 
       <TabContent activeTab={activeTab}>
         <TabPane tabId="1">
-          <Photos images={modelInfo.gallery} />
+          <Photos notSelf={notSelf} profileInfo={profileInfo} />
         </TabPane>
         <TabPane tabId="2">
-          <Videos />
+          <Videos notSelf={notSelf} profileInfo={profileInfo} />
         </TabPane>
         <TabPane tabId="3">
-          <AboutMe />
+          <AboutMe notSelf={notSelf} profileInfo={profileInfo} />
         </TabPane>
         <TabPane tabId="4">
-          <Portfolio portfolio={modelInfo.portfolio} />
+          <Portfolio
+            notSelf={notSelf}
+            profileInfo={profileInfo}
+            portfolio={modelInfo.portfolio}
+          />
         </TabPane>
       </TabContent>
     </div>

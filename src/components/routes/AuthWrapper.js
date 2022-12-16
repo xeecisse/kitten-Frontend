@@ -5,7 +5,7 @@ import Navbar from '../Navbars/MainNavbar'
 function AuthWrapper(props) {
   return (
     <div className="" style={{ height: '100vh' }}>
-      <Navbar />
+      {/* <Navbar /> */}
       <div style={{ height: 50 }} />
 
       <main>{props.children}</main>

@@ -1,20 +1,36 @@
 import { FaClock } from "react-icons/fa";
+<<<<<<< HEAD
 import { useNavigate } from "react-router";
 import { Card, CardBody, CardHeader } from "reactstrap";
 import CustomButton from "../../components/UI/CustomButton";
 import '../../styles/AppStyles.css'
+=======
+import { Card, CardBody, CardHeader, Input } from "reactstrap";
+import CustomButton from "../../components/UI/CustomButton";
+import img_1 from "../../img/image_1.jpg";
+import img_2 from "../../img/image_2.jpg";
+
+>>>>>>> 55af78cd66b065399dc23805f060baf9af59b836
 export default (props) => {
   const goto = useNavigate()
   return (
     <p className="text-white">
       <div className="d-flex justify-content-between mb-4">
         <img
-          src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
+          src={img_1}
           alt="avatar"
           className="rounded-circle d-flex align-self-start me-3 shadow-1-strong"
           width="60"
         />
-        <Card className="mask-custom">
+        <Card
+          style={{
+            borderRadius: "0",
+            border: "none",
+            backgroundColor: "rgba(127, 205, 218, 0.1)",
+            color: "white",
+            fontFamily: '"Gill Sans", sans-serif;',
+          }}
+        >
           <CardHeader
             className="d-flex justify-content-between p-3"
             style={{ borderBottom: "1px solid rgba(255,255,255,.3)" }}
@@ -33,7 +49,16 @@ export default (props) => {
         </Card>
       </div>
       <div className="d-flex justify-content-between mb-4">
-        <Card className="w-100 mask-custom">
+        <Card
+          className="w-100 mask-custom"
+          style={{
+            borderRadius: "0",
+            border: "none",
+            backgroundColor: "rgba(127, 205, 218, 0.1)",
+            color: "white",
+            fontFamily: '"Gill Sans", sans-serif;',
+          }}
+        >
           <CardHeader
             className="d-flex justify-content-between p-3"
             style={{ borderBottom: "1px solid rgba(255,255,255,.3)" }}
@@ -51,7 +76,7 @@ export default (props) => {
           </CardBody>
         </Card>
         <img
-          src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-5.webp"
+          src={img_2}
           alt="avatar"
           className="rounded-circle d-flex align-self-start ms-3 shadow-1-strong"
           width="60"
@@ -59,12 +84,20 @@ export default (props) => {
       </div>
       <div className="d-flex justify-content-between mb-4">
         <img
-          src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
-          alt="avatar"
-          className="rounded-circle d-flex align-self-start me-3 shadow-1-strong"
+          src={img_1}
+          className="rounded-circle d-flex align-self-start me-3 shadow-1-strong "
           width="60"
         />
-        <Card className="mask-custom">
+        <Card
+          className="mask-custom"
+          style={{
+            borderRadius: "0",
+            border: "none",
+            backgroundColor: "rgba(127, 205, 218, 0.1)",
+            color: "white",
+            fontFamily: '"Gill Sans", sans-serif;',
+          }}
+        >
           <CardHeader
             className="d-flex justify-content-between p-3"
             style={{ borderBottom: "1px solid rgba(255,255,255,.3)" }}
@@ -83,12 +116,7 @@ export default (props) => {
         </Card>
       </div>
       <div className="mb-3">
-        <textarea
-          className="form-control"
-          label="Message"
-          id="textAreaExample"
-          rows={4}
-        />
+        <Input type="textarea" label="Message" id="textAreaExample" rows={4} />
       </div>
       <button className="primary_button" onClick={()=>goto('/create-contract')}>Create Contract</button>
       <CustomButton color="light" size="lg" rounded className="float-end">
