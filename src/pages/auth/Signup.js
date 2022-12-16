@@ -21,51 +21,36 @@ function Signup() {
   const navigate = useNavigate();
 
   return (
-    <div
-      className="m-0"
-      style={{
-        backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ),url(${bg})`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        height: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <Row>
-        <Col className="offset-md-2" md={8}>
+    <div style={{display:'flex', justify:'center', alignItems:'center', height:'100vh'}}>
+      <div>
+
+      <Row className="m-0 p-0">
+        
+        <Col>
           <Card
-            style={{
-              borderRadius: "0",
-              border: "none",
-              backgroundColor: "rgba(127, 205, 218, 0.1)",
-              color: "white",
-              fontFamily: 'font-family: "Gill Sans", sans-serif;',
-            }}
+            className="shadow main_card"
           >
-            <CardHeader className="h4 text-center">Signup</CardHeader>
+            {/* <CardHeader className="h4 text-center">laloona</CardHeader> */}
             <CardBody>
+              <h1 className="brand_name">laloona</h1>
               <Row className="login-row mt-2">
                 <div className="my-2">
                   <label>Name</label>
                   <Input
                     className="form-control"
-                    placeholder="e.g. John Doe"
+
                     required
                   />
                 </div>
 
                 <div className="my-2">
                   <label>Email</label>
-                  <Input type="email" required placeholder="example@mail.com" />
+                  <Input type="email" required />
                 </div>
 
                 <div className="my-2">
                   <label>Password</label>
-                  <Input type="password" placeholder="*******" required />
+                  <Input type="password" required />
                 </div>
                 <div className="my-2">
                   <label>You are....</label>
@@ -74,7 +59,7 @@ function Signup() {
                     <option>Model</option>
                     <option>Makeup Artist</option>
                     <option>Photographer</option>
-                    <option>Stylyist</option>
+                    <option>Stylist</option>
                     <option>Company</option>
                   </select>
                 </div>
@@ -85,7 +70,7 @@ function Signup() {
                     className="px-5"
                     onClick={() => navigate("/model-list")}
                   >
-                    Submit
+                    Signup
                   </CustomButton>
                 </div>
 
@@ -112,6 +97,8 @@ function Signup() {
           </Card>
         </Col>
       </Row>
+      </div>
+
     </div>
   );
 }

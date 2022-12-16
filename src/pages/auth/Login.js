@@ -16,97 +16,72 @@ import SelectInput from "../../components/UI/SelectInput";
 import "./Signup.css";
 import { useNavigate } from "react-router";
 import CustomButton from "../../components/UI/CustomButton";
+import { AlignCenter } from "react-feather";
 
 function Signup() {
   const navigate = useNavigate();
 
   return (
-    <div
-      className="m-0"
-      style={{
-        // backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ),url(${bg1})`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        height: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      {/* <Button>Login</Button> */}
+    <div style={{ display: 'flex', justifyContent:'center', alignItems:'center', height:'100vh' }}>
+      <div>
 
-      <Row>
-        <Col className="offset-md-2" md={8}>
-          <Card
-            style={{
-              borderRadius: "0",
-              border: "none",
-              backgroundColor: "rgba(127, 205, 218, 0.1)",
-              color: "white",
-              fontFamily: 'font-family: "Gill Sans", sans-serif;',
-            }}
-          >
-            <CardHeader className="h4 text-center">Login</CardHeader>
-            <CardBody>
-              <Row className="login-row mt-2">
-                <div className="my-2">
-                  <label>Email</label>
-                  <Input type="email" required placeholder="example@mail.com" />
-                </div>
-
-                <div className="my-2">
-                  <label>Password</label>
-                  <Input type="password" placeholder="*******" required />
-                </div>
-              </Row>
-              <div className="text-center">
-                <CustomButton
-                  className="m-1 px-5"
-                  onClick={() => navigate("/model-list")}
-                  color="dark"
-                >
-                  Submit
-                </CustomButton>
-              </div>
-
-              <div className="d-flex flex-direction-column mt-2">
-                <CustomButton className="m-1" color="danger">
-                  Continue with Google
-                </CustomButton>
-                <CustomButton className="m-1" color="primary">
-                  Continue with Facebook
-                </CustomButton>
-                <CustomButton className="m-1" color="warning">
-                  Continue with Instagram
-                </CustomButton>
-              </div>
-
-              <div className="text-center">
-                <hr style={{ padding: 0 }}></hr>
-                <p
-                  style={{
-                    fontSize: "13px",
-                    marginTop: 5,
-                    color: "grey",
-                  }}
-                >
-                  First time user?{" "}
-                  <span
-                    style={{ cursor: "pointer" }}
-                    onClick={() => navigate("/")}
+        <Row className="m-0 p-0">
+          {/* <Col md={4}></Col> */}
+          <Col>
+            <Card
+              className="shadow main_card"
+            >
+              {/* <CardHeader className="h4 text-center">laloona</CardHeader> */}
+              <CardBody>
+                <h1 className="brand_name">laloona</h1>
+                <Row className="login-row mt-2">
+                  <div className="my-2">
+                    <label>Email</label>
+                    <Input
+                      className="form-control"
+                      type='email'
+                      required
+                    />
+                  </div>
+                  <div className="my-2">
+                    <label>Password</label>
+                    <Input type="password" required />
+                  </div>
+                </Row>
+                <div className="text-center mt-2">
+                  <CustomButton
+                    className="m-1 px-5"
+                    onClick={() => navigate("/model-list")}
+                    color="dark"
                   >
-                    Create an account here!
-                  </span>{" "}
-                </p>
-              </div>
-            </CardBody>
-          </Card>
-        </Col>
-      </Row>
+                    Submit
+                  </CustomButton>
+                </div>
+                <div className="text-center">
+                  <hr style={{ padding: 0 }}></hr>
+                  <p
+                    style={{
+                      fontSize: "13px",
+                      marginTop: 5,
+                      color: "grey",
+                    }}
+                  >
+                    First time user?{" "}
+                    <span
+                      style={{ cursor: "pointer" }}
+                      onClick={() => navigate("/")}
+                    >
+                      Create an account here!
+                    </span>{" "}
+                  </p>
+                </div>
+              </CardBody>
+            </Card>
+          </Col>
+          {/* <Col md={4}></Col> */}
+        </Row>
+      </div>
     </div>
-  );
+  )
 }
-
-export default Signup;
+export default Signup

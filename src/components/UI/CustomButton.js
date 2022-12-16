@@ -10,7 +10,7 @@ function CustomButton(props) {
       // color={props.color || "warning" }
       // style={{color:"white"}}
       // style={{ border: `1px solid ${secondaryColor}`,background: `${secondaryColor}`,color:"white", ...props.style }}
-
+      className='custom_button'
     >
       {props.loading && (
         <span

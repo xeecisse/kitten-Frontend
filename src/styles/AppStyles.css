@@ -57,7 +57,7 @@
 }
 label{
     font-size: 12px;
-    color: rgb(177, 0, 97);
+    color: rgb(0, 0, 0);
 }
 .contract_model_img{
     width:350px;
@@ -89,4 +89,17 @@ label{
 }
 .break_line{
     color: rgb(255, 0, 140);
+}
+.brand_name{
+    font-weight: bold;
+    text-align: center;
+}
+.custom_button{
+    border-radius: 20px;
+    padding: 5px 20px;
+    outline: 1px solid black;
+    outline-offset: 3px;
+}
+.main_card{
+    border-radius: 20px;
 }
