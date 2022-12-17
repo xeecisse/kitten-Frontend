@@ -111,6 +111,7 @@ label {
   border: none;
   border-radius: 20px;
   padding: 5px 20px;
+  color:white;
   background-image: linear-gradient(-100deg, var(--primaryColor), var(--secondaryColor) );
   /* background-color: rgb(2, 198, 109); */
   outline: 1px solid rgb(0, 193, 145);
@@ -121,7 +122,7 @@ label {
 }
 .main_card {
   border-radius: 20px !important;
-  outline: 1px solid rgb(83, 83, 83);
+  outline: 1px solid rgba(0, 193, 145, 0.493);
   outline-offset: 10px;
 }
 .gig_card {
@@ -200,4 +201,14 @@ label {
     background-color: white;
     border-top-left-radius: 15px !important;
     border-top-right-radius: 15px !important;
+}
+
+.gig_title{
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.git_title{
+  color: var(--primaryColor);
+  font-size: 20px;
 }

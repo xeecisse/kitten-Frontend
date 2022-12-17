@@ -158,19 +158,19 @@ export default (props) => {
             badge={pendingProposals.length.toString()}
           >
             {pendingProposals.map((it, i) => (
-              <div key={i}>
+              <div key={i} className='mb-3'>
                 <Row
                   key={i}
                 >
                   <Col md={9} style={{borderRight:'1px solid rgb(218, 218, 218)'}}>
                     <h6>{it.title}</h6>
                     <p>{it.description}</p>
-                    <span>{moment(it.created_at).fromNow()}</span>
+                    <span style={{fontSize:12}}>{moment(it.created_at).fromNow()}</span>
                   </Col>
                   <Col md={3}>
                     <CustomButton
                       color=""
-                      className="m-1"
+                      className="m-1 text-white"
                       
                       onClick={() => navigate(`/manage-gigs/view/${it}`)}
                     >
@@ -180,6 +180,7 @@ export default (props) => {
                 </Row>
               </div>
             ))}
+            
           </CollapseCard>
         </Col>
       </Row>

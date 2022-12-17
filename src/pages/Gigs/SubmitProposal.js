@@ -76,7 +76,7 @@ export default function SubmitProposal({
         isOpen={isOpen}
         toggle={toggle}
       >
-        <ModalHeader toggle={toggle}>Apply for gig</ModalHeader>
+        <ModalHeader toggle={toggle}><h3 className="git_title">Apply for gig</h3></ModalHeader>
         <ModalBody pb={6}>
           <Form>
             <FormGroup>
