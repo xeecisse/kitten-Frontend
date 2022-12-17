@@ -34,7 +34,7 @@ function ProfileDetails({ modelInfo = {}, profileInfo = {}, notSelf = true }) {
           <NavLink
             href="#"
             active={activeTab === "1"}
-            className={activeTab === "1" ? "fw-bold" : "text-white"}
+            className={activeTab === "1" ? "fw-bold" : "tab_title"}
             onClick={(e) => {
               e.preventDefault();
               setActiveTab("1");
@@ -47,7 +47,7 @@ function ProfileDetails({ modelInfo = {}, profileInfo = {}, notSelf = true }) {
           <NavLink
             href="#"
             active={activeTab === "2"}
-            className={activeTab === "2" ? "fw-bold" : "text-white"}
+            className={activeTab === "2" ? "fw-bold" : "tab_title"}
             onClick={(e) => {
               e.preventDefault();
               setActiveTab("2");
@@ -60,7 +60,7 @@ function ProfileDetails({ modelInfo = {}, profileInfo = {}, notSelf = true }) {
           <NavLink
             href="#"
             active={activeTab === "3"}
-            className={activeTab === "3" ? "fw-bold" : "text-white"}
+            className={activeTab === "3" ? "fw-bold" : "tab_title"}
             onClick={(e) => {
               e.preventDefault();
               setActiveTab("3");
@@ -73,7 +73,7 @@ function ProfileDetails({ modelInfo = {}, profileInfo = {}, notSelf = true }) {
           <NavLink
             href="#"
             active={activeTab === "4"}
-            className={activeTab === "4" ? "fw-bold" : "text-white"}
+            className={activeTab === "4" ? "fw-bold" : "tab_title"}
             onClick={(e) => {
               e.preventDefault();
               setActiveTab("4");

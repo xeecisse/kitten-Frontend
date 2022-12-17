@@ -42,12 +42,12 @@ export default ({ notSelf = true, profileInfo = {} }) => {
   return (
     <div>
       {notSelf ? null : (
-        <div className="d-flex flex-direction-row justify-content-end my-1">
+        <div className="d-flex flex-direction-row justify-content-center my-1 mt-3">
           <CustomButton
             color="dark"
             onClick={() => setPhotoUploadModalIsOpen(true)}
           >
-            <FaUpload /> Upload Photos
+           Upload Photos
           </CustomButton>
         </div>
       )}
@@ -59,7 +59,7 @@ export default ({ notSelf = true, profileInfo = {} }) => {
       )}
 
       {imagesList.length ? null : (
-        <p className="text-center text-white my-2">
+        <p className="text-center my-2 nop">
           No image found, check back later
         </p>
       )}

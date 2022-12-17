@@ -114,9 +114,9 @@ export default function UpdateProfile({
           >
             Save
           </CustomButton>
-          <Button onClick={onClose} color="dark">
+          <CustomButton onClick={onClose} color="dark">
             Cancel
-          </Button>
+          </CustomButton>
         </ModalFooter>
       </Modal>
     </>

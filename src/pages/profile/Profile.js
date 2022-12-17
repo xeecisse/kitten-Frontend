@@ -14,7 +14,7 @@ import {
 } from "react-icons/fa";
 import { MdRateReview } from "react-icons/md";
 import { Navigate, useNavigate, useParams } from "react-router";
-import { Button, Spinner } from "reactstrap";
+import { Button, Card, Col, Row, Spinner } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { getAgeFromDOB } from "../../utils";
 import UpdateProfile from "./UpdateProfile";
@@ -56,12 +56,13 @@ function Profile() {
   }, [getProfileInfo]);
 
   return (
-    <ImageBackgroundWrapper>
+    <div>
       {/* <p className="text-white">
         {JSON.stringify({ notSelf, model_id, id: user.id })}
       </p> */}
-      <div className="container">
-        <div className="row d-flex d-md-none">
+      <div className="container mt-3">
+
+        {/* <div className="row d-flex d-md-none">
           <div className="offset-md-3 col-md-6 p-2">
             <img
               src={profileInfo.cover_image}
@@ -82,40 +83,70 @@ function Profile() {
                   <FaUpload className="ms-2" />
                 </Button>
               </div>
-            )}
-          </div>
-        </div>
+              )}
+              </div>
+            </div> */}
 
         <div className="row align-items-center my-1 my-xs-3 my-sm-3">
-          <div className="offset-md-2 col-md-2 col-sm-2 d-none d-sm-flex d-md-flex d-lg-flex d-xl-flex">
-            <div>
+          {/* <Card className="gig_card shadow"> */}
+          <Row>
+            <Col md={2}></Col>
+            <Col md={2}>
+
+              {/* <div className="offset-md-2 col-md-2 col-sm-2 d-none d-sm-flex d-md-flex d-lg-flex d-xl-flex">
+            <div> */}
               <img
                 src={profileInfo.cover_image}
-                className="img-fluid rounded"
+                className="img-fluid rounded profile_image"
                 alt="cover_image"
               />
-              <Button
-                className="mt-1 w-100"
+              <CustomButton
+                style={{ marginTop: 10, width: '100%' }}
                 onClick={() => setCoverImageUploadModalOpen(true)}
               >
-                Update
-                <FaEdit className="ms-2" />
-              </Button>
-            </div>
-          </div>
+                Update Image
+              </CustomButton>
+              {/* </div>
+          </div> */}
+            </Col>
+            <Col md={8}>
 
-          <div className="col-md-6 col-sm-9">
-            <p className="display-6 text-white">
-              {profileInfo.firstname} {profileInfo.lastname}
-            </p>
-            <p className="display-6 text-white">
-              {profileInfo.preferred_name} ({getAgeFromDOB(profileInfo.dob)})
-            </p>
+              <Row className="">
+                <Col md={6}>
 
-            <p className="display-6 text-white">
-              {profileInfo.state}, {profileInfo.country}
-            </p>
-          </div>
+                  <p className="username">
+                    {profileInfo.preferred_name}
+                    {/* ({getAgeFromDOB(profileInfo.dob)}) */}
+                  </p>
+                  <p className="fullname">
+                    {profileInfo.firstname} {profileInfo.lastname}
+                  </p>
+                  <p>
+                    {profileInfo.bio}
+                  </p>
+                  <p className="address">
+                    {profileInfo.state}, {profileInfo.country}
+                  </p>
+                </Col>
+                <Col md={6}>
+                  <CustomButton
+
+                    className="mt-5"
+                    // onClick={() => navigate("/update-profile")}
+                    onClick={() => setEditModalOpen(true)}
+                  >
+                    Edit Profile
+                  </CustomButton>
+
+
+                </Col>
+
+              </Row>
+            </Col>
+            <Col md={2}></Col>
+          </Row>
+          {/* </Card> */}
+
         </div>
 
         {/* <div className="text-center text-white">
@@ -128,7 +159,7 @@ function Profile() {
           </center>
         )}
 
-        {notSelf ? null : (
+        {/* {notSelf ? null : (
           <div className="row">
             <div className="offset-md-2 col-md-8 d-flex flex-row justify-content-between my-1">
               <CustomButton
@@ -148,9 +179,9 @@ function Profile() {
               </CustomButton>
             </div>
           </div>
-        )}
+        )} */}
 
-        <div className="row my-1 my-sm-3">
+        <div className="row mt-5">
           <div className="offset-md-2 col-md-8">
             <ProfileDetails notSelf={notSelf} profileInfo={profileInfo} />
           </div>
@@ -169,7 +200,8 @@ function Profile() {
         getProfileInfo={getProfileInfo}
         profileInfo={profileInfo}
       />
-    </ImageBackgroundWrapper>
+
+    </div>
   );
 }
 

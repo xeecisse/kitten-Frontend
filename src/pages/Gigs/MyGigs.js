@@ -85,21 +85,23 @@ export default (props) => {
   return (
     <div>
       <div className="text-center">
-      {loading && <Spinner />}
+        {loading && <Spinner />}
       </div>
       <Row className="m-0 p-0 mt-4">
         <Col md={4}>
-          <CollapseCard
+          {/* <CollapseCard
             isOpen={true}
             title="Ongoing Gigs"
             badge={activeGigs.length.toString()}
-          >
+          > */}
+           <Card className="p-3 gig_card shadow">
+            <h6 className="mb-4">Ongoing Gigs <Badge>{activeGigs.length.toString()}</Badge></h6>
             {activeGigs.map((it, i) => (
               <div key={i}>
-               <Row
+                <Row
                   key={i}
                 >
-                  <Col md={9} style={{borderRight:'1px solid rgb(218, 218, 218)'}}>
+                  <Col md={9} style={{ borderRight: '1px solid rgb(218, 218, 218)' }}>
                     <h6>{it.title}</h6>
                     <p>{it.description}</p>
                     <span>{moment(it.created_at).fromNow()}</span>
@@ -108,7 +110,7 @@ export default (props) => {
                     <CustomButton
                       color=""
                       className="m-1"
-                      
+
                       onClick={() => navigate(`/manage-gigs/view/${it}`)}
                     >
                       View
@@ -117,21 +119,24 @@ export default (props) => {
                 </Row>
               </div>
             ))}
-          </CollapseCard>
+            </Card>
+          {/* </CollapseCard> */}
         </Col>
         <Col md={4}>
 
-          <CollapseCard
+          {/* <CollapseCard
             isOpen={false}
             title="Pending Invitations"
             badge={pendingInvitation.length.toString()}
-          >
+          > */}
+          <Card className="p-3 gig_card shadow">
+            <h6 className="mb-4">Pending Invitation <Badge>{pendingInvitation.length.toString()}</Badge></h6>
             {pendingInvitation.map((it, i) => (
               <div key={i}>
                 <Row
                   key={i}
                 >
-                  <Col md={9} style={{borderRight:'1px solid rgb(218, 218, 218)'}}>
+                  <Col md={9} style={{ borderRight: '1px solid rgb(218, 218, 218)' }}>
                     <h6>{it.title}</h6>
                     <p>{it.description}</p>
                     <span>{moment(it.created_at).fromNow()}</span>
@@ -140,7 +145,7 @@ export default (props) => {
                     <CustomButton
                       color=""
                       className="m-1"
-                      
+
                       onClick={() => navigate(`/manage-gigs/view/${it}`)}
                     >
                       View
@@ -149,29 +154,33 @@ export default (props) => {
                 </Row>
               </div>
             ))}
-          </CollapseCard>
+          </Card>
+          {/* </CollapseCard> */}
         </Col>
         <Col md={4}>
-          <CollapseCard
+          {/* <CollapseCard
             isOpen={false}
             title="Pending Gig Applications"
             badge={pendingProposals.length.toString()}
-          >
+          > */}
+          <Card className="p-3 gig_card shadow">
+            <h6 className="mb-4">Pending Gig Application <Badge>{pendingProposals.length.toString()}</Badge></h6>
+            {/* <hr/> */}
             {pendingProposals.map((it, i) => (
               <div key={i} className='mb-3'>
                 <Row
                   key={i}
                 >
-                  <Col md={9} style={{borderRight:'1px solid rgb(218, 218, 218)'}}>
-                    <h6>{it.title}</h6>
+                  <Col md={9} style={{ borderRight: '1px solid rgb(218, 218, 218)' }}>
+                    <h6 style={{ color: primaryColor }}>{it.title}</h6>
                     <p>{it.description}</p>
-                    <span style={{fontSize:12}}>{moment(it.created_at).fromNow()}</span>
+                    <span style={{ fontSize: 12 }}>{moment(it.created_at).fromNow()}</span>
                   </Col>
                   <Col md={3}>
                     <CustomButton
                       color=""
                       className="m-1 text-white"
-                      
+
                       onClick={() => navigate(`/manage-gigs/view/${it}`)}
                     >
                       View
@@ -180,8 +189,9 @@ export default (props) => {
                 </Row>
               </div>
             ))}
-            
-          </CollapseCard>
+          </Card>
+
+          {/* </CollapseCard> */}
         </Col>
       </Row>
 
@@ -200,7 +210,7 @@ export function CollapseCard(props) {
   const toggle = () => setIsOpen((p) => !p);
 
   return (
-    <Card className="my-2 shadow" style={{borderRadius:15, border:'none'}}>
+    <Card className="my-2 shadow" style={{ borderRadius: 15, border: 'none' }}>
       <CardHeader
         onClick={() => toggle((d) => !d)}
         style={{

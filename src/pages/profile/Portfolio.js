@@ -11,12 +11,12 @@ export default ({ portfolio = [], notSelf = null }) => {
   return (
     <div>
       {notSelf ? null : (
-        <div className="d-flex flex-direction-row justify-content-end my-1">
+        <div className="d-flex flex-direction-row justify-content-center my-1 mt-3">
           <CustomButton
             color="dark"
             onClick={() => setPortFolioModalIsOpn(true)}
           >
-            <FaPlus /> Add New
+            Add New
           </CustomButton>
         </div>
       )}
@@ -29,7 +29,7 @@ export default ({ portfolio = [], notSelf = null }) => {
       )}
 
       {portfolio.length ? null : (
-        <p className="text-center text-white my-2">
+        <p className="text-center my-2 nop">
           No portfolio added yet, check back later
         </p>
       )}

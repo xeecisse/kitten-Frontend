@@ -112,6 +112,7 @@ label {
   border-radius: 20px;
   padding: 5px 20px;
   color:white;
+  font-size: 12px;
   background-image: linear-gradient(-100deg, var(--primaryColor), var(--secondaryColor) );
   /* background-color: rgb(2, 198, 109); */
   outline: 1px solid rgb(0, 193, 145);
@@ -211,4 +212,39 @@ label {
 .git_title{
   color: var(--primaryColor);
   font-size: 20px;
+}
+.username{
+  font-weight: lighter;
+  font-size: 25px;
+}
+.fullname{
+  font-weight: bold;
+  margin: 0;
+}
+.address{
+  /* font-weight: ligjt; */
+  color: var(--primaryColor);
+  margin: 0;
+}
+.profile_image{
+  width: 200px;
+  border-radius: 20px !important;
+}
+.tab_title{
+  /* font-size: 13px; */
+  color: black;
+}
+
+.tab_title{
+  /* all: none !important; */
+}
+.nop{
+  font-size: 12px;
+  color: var(--primaryColor);
+}
+.biolabel, .biovalue{
+  font-size: 12px !important;
+}
+.biolabel{
+  color:var(--primaryColor)
 }
