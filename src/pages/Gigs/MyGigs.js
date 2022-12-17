@@ -8,9 +8,12 @@ import {
   Card,
   CardBody,
   CardHeader,
+  Col,
   Collapse,
+  Row,
   Spinner,
 } from "reactstrap";
+import { primaryColor } from "../../Colors/Colors";
 import CollapsibleCard from "../../components/UI/CollapsibleCard";
 import CustomButton from "../../components/UI/CustomButton";
 import ImageBackgroundWrapper from "../../components/UI/ImageBackgroundWrapper";
@@ -18,11 +21,7 @@ import Tab from "../../components/UI/tab/index";
 import { fetchApi } from "../../redux/actions/api";
 
 export const transparentCardStyle = {
-  borderRadius: "0",
-  border: "none",
-  backgroundColor: "rgba(127, 205, 218, 0.1)",
-  color: "white",
-  fontFamily: 'font-family: "Gill Sans", sans-serif;',
+
 };
 
 export default (props) => {
@@ -84,108 +83,114 @@ export default (props) => {
   }, [user.id]);
 
   return (
-    <ImageBackgroundWrapper>
-      {loading && <Spinner color="white" />}
+    <div>
+      <div className="text-center">
+      {loading && <Spinner />}
+      </div>
+      <Row className="m-0 p-0 mt-4">
+        <Col md={4}>
+          <CollapseCard
+            isOpen={true}
+            title="Ongoing Gigs"
+            badge={activeGigs.length.toString()}
+          >
+            {activeGigs.map((it, i) => (
+              <div key={i}>
+               <Row
+                  key={i}
+                >
+                  <Col md={9} style={{borderRight:'1px solid rgb(218, 218, 218)'}}>
+                    <h6>{it.title}</h6>
+                    <p>{it.description}</p>
+                    <span>{moment(it.created_at).fromNow()}</span>
+                  </Col>
+                  <Col md={3}>
+                    <CustomButton
+                      color=""
+                      className="m-1"
+                      
+                      onClick={() => navigate(`/manage-gigs/view/${it}`)}
+                    >
+                      View
+                    </CustomButton>
+                  </Col>
+                </Row>
+              </div>
+            ))}
+          </CollapseCard>
+        </Col>
+        <Col md={4}>
 
-      {/* <Tab tabs={["List", "Archive"]}>
-        <> */}
-      <CollapseCard
-        isOpen={true}
-        title="Ongoing Gigs"
-        badge={activeGigs.length.toString()}
-      >
-        {activeGigs.map((it, i) => (
-          <div key={i}>
-            <div
-              key={i}
-              className="row shadow border border-light rounded p-2 my-1"
-            >
-              <div className="col-10">
-                <h6>{it.title}</h6>
-                <p>{it.description}</p>
-                <span>{moment(it.created_at).fromNow()}</span>
-              </div>
-              <div className="col-2">
-                <CustomButton
-                  color="light"
-                  className="m-1"
-                  size="sm"
-                  onClick={() => navigate(`/manage-gigs/view/${it}`)}
+          <CollapseCard
+            isOpen={false}
+            title="Pending Invitations"
+            badge={pendingInvitation.length.toString()}
+          >
+            {pendingInvitation.map((it, i) => (
+              <div key={i}>
+                <Row
+                  key={i}
                 >
-                  View
-                </CustomButton>
+                  <Col md={9} style={{borderRight:'1px solid rgb(218, 218, 218)'}}>
+                    <h6>{it.title}</h6>
+                    <p>{it.description}</p>
+                    <span>{moment(it.created_at).fromNow()}</span>
+                  </Col>
+                  <Col md={3}>
+                    <CustomButton
+                      color=""
+                      className="m-1"
+                      
+                      onClick={() => navigate(`/manage-gigs/view/${it}`)}
+                    >
+                      View
+                    </CustomButton>
+                  </Col>
+                </Row>
               </div>
-            </div>
-          </div>
-        ))}
-      </CollapseCard>
-      <CollapseCard
-        isOpen={false}
-        title="Pending Invitations"
-        badge={pendingInvitation.length.toString()}
-      >
-        {pendingInvitation.map((it, i) => (
-          <div key={i}>
-            <div
-              key={i}
-              className="row shadow border border-light rounded p-2 my-1"
-            >
-              <div className="col-10">
-                <h6>{it.title}</h6>
-                <p>{it.description}</p>
-                <span>{moment(it.created_at).fromNow()}</span>
-              </div>
-              <div className="col-2">
-                <CustomButton
-                  color="light"
-                  className="m-1"
-                  size="sm"
-                  onClick={() => navigate(`/manage-gigs/view/${it}`)}
+            ))}
+          </CollapseCard>
+        </Col>
+        <Col md={4}>
+          <CollapseCard
+            isOpen={false}
+            title="Pending Gig Applications"
+            badge={pendingProposals.length.toString()}
+          >
+            {pendingProposals.map((it, i) => (
+              <div key={i}>
+                <Row
+                  key={i}
                 >
-                  View
-                </CustomButton>
+                  <Col md={9} style={{borderRight:'1px solid rgb(218, 218, 218)'}}>
+                    <h6>{it.title}</h6>
+                    <p>{it.description}</p>
+                    <span>{moment(it.created_at).fromNow()}</span>
+                  </Col>
+                  <Col md={3}>
+                    <CustomButton
+                      color=""
+                      className="m-1"
+                      
+                      onClick={() => navigate(`/manage-gigs/view/${it}`)}
+                    >
+                      View
+                    </CustomButton>
+                  </Col>
+                </Row>
               </div>
-            </div>
-          </div>
-        ))}
-      </CollapseCard>
-      <CollapseCard
-        isOpen={false}
-        title="Pending Gig Applications"
-        badge={pendingProposals.length.toString()}
-      >
-        {pendingProposals.map((it, i) => (
-          <div key={i}>
-            <div
-              key={i}
-              className="row shadow border border-light rounded p-2 my-1"
-            >
-              <div className="col-10">
-                <h6>{it.title}</h6>
-                <p>{it.description}</p>
-                <span>{moment(it.created_at).fromNow()}</span>
-              </div>
-              <div className="col-2">
-                <CustomButton
-                  color="light"
-                  className="m-1"
-                  size="sm"
-                  onClick={() => navigate(`/manage-gigs/view/${it}`)}
-                >
-                  View
-                </CustomButton>
-              </div>
-            </div>
-          </div>
-        ))}
-      </CollapseCard>
+            ))}
+          </CollapseCard>
+        </Col>
+      </Row>
 
       {/* </>
         <>
           <h1>sadfasdf</h1>
         </>
       </Tab> */}
-    </ImageBackgroundWrapper>
+    </div>
+
   );
 };
 
@@ -194,7 +199,7 @@ export function CollapseCard(props) {
   const toggle = () => setIsOpen((p) => !p);
 
   return (
-    <Card style={transparentCardStyle} className="my-2">
+    <Card className="my-2 shadow" style={{borderRadius:15, border:'none'}}>
       <CardHeader
         onClick={() => toggle((d) => !d)}
         style={{
@@ -203,17 +208,17 @@ export function CollapseCard(props) {
           alignItems: "center",
           //   height: 40,
         }}
-        className="d-flex flex-direction-row justify-content-between py-1"
+        className="d-flex flex-direction-row justify-content-between py-1 gigs_header"
       >
-        <span className="mr-2 text-white" style={{ fontSize: 16 }}>
-          {props.title} {props.badge ? <Badge>{props.badge}</Badge> : null}
+        <span className="mr-2 text-dark" style={{ fontSize: 16 }}>
+          {props.title} {props.badge ? <Badge className="badge">{props.badge}</Badge> : null}
         </span>
 
         <>
           {!isOpen ? (
-            <FaChevronDown className="text-white" />
+            <FaChevronDown className="text-dark" />
           ) : (
-            <FaChevronUp className="text-white" />
+            <FaChevronUp className="text-dark" />
           )}
         </>
       </CardHeader>

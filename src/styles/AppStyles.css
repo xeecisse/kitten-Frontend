@@ -1,118 +1,203 @@
-*{
-    box-sizing: border-box;
+* {
+  box-sizing: border-box;
 }
 
-.primary_button{
-    border: none;
-    padding: 5px 20px;
-    background-color: rgb(177, 0, 97);
-    color: white;
-    border-radius: 10px;
-    transition: 500ms;
-    outline: 1px solid rgb(255, 0, 140);
-    outline-offset: 5px;
+:root {
+    --primaryColor: rgb(2, 198, 109);
+    --secondaryColor: rgb(0, 87, 48);
+  }
+
+.primary_button {
+  border: none;
+  padding: 5px 20px;
+  background-color: rgb(177, 0, 97);
+  color: white;
+  border-radius: 10px;
+  transition: 500ms;
+  outline: 1px solid rgb(255, 0, 140);
+  outline-offset: 5px;
 }
 
-.primary_button:hover{
-   background-color: rgb(255, 0, 140);
+.primary_button:hover {
+  background-color: rgb(255, 0, 140);
 }
 
-.cancel_button{
-    border: none;
-    padding: 5px 20px;
-    background-color: rgb(82, 0, 45);
-    color: white;
-    border-radius: 10px;
-    transition: 500ms;
-    outline: 1px solid rgb(82, 0, 45);
-    outline-offset: 5px;
+.cancel_button {
+  border: none;
+  padding: 5px 20px;
+  background-color: rgb(82, 0, 45);
+  color: white;
+  border-radius: 10px;
+  transition: 500ms;
+  outline: 1px solid rgb(82, 0, 45);
+  outline-offset: 5px;
 }
 
-.cancel_button:hover{
-   background-color: rgb(136, 0, 75);
+.cancel_button:hover {
+  background-color: rgb(136, 0, 75);
 }
 
-.contract_card{
-    border: none;
-    background-image: linear-gradient(90deg, rgba(177, 0, 97, 0.05), rgba(255, 0, 140, 0.05));
-    border-radius: 10px;
+.contract_card {
+  border: none;
+  background-image: linear-gradient(
+    90deg,
+    rgba(177, 0, 97, 0.05),
+    rgba(255, 0, 140, 0.05)
+  );
+  border-radius: 10px;
 }
-.comp_heading{
-    color: rgb(177, 0, 97);
-    font-weight: bold;
+.comp_heading {
+  color: rgb(177, 0, 97);
+  font-weight: bold;
 }
-.contract_inputs{
-    padding: 10px;
-    border-radius: 0 10px 10px 10px;
-    display: block;
-    width: 100%;
-    /* border: 1px solid rgb(177, 0, 97); */
-    border: none;
-    margin-bottom: 15px;
-    background-image: linear-gradient(90deg, rgba(177, 0, 97, 0.226), rgba(255, 0, 140, 0.226));
-    transition: 500ms;
+.contract_inputs {
+  padding: 10px;
+  border-radius: 0 10px 10px 10px;
+  display: block;
+  width: 100%;
+  /* border: 1px solid rgb(177, 0, 97); */
+  border: none;
+  margin-bottom: 15px;
+  background-image: linear-gradient(
+    90deg,
+    rgba(177, 0, 97, 0.226),
+    rgba(255, 0, 140, 0.226)
+  );
+  transition: 500ms;
 }
-.contract_inputs:focus{
-    outline: 1px solid rgb(255, 0, 140) !important;
+.contract_inputs:focus {
+  outline: 1px solid rgb(255, 0, 140) !important;
 }
-label{
-    font-size: 12px;
-    color: rgb(0, 0, 0);
+label {
+  font-size: 12px;
+  color: rgb(0, 0, 0);
 }
-.contract_model_img{
-    width:350px;
-    border-radius: 50%;
-    outline: 1px solid rgb(177, 0, 97);
-    outline-offset: 10px;
-    transition: 500ms;
+.contract_model_img {
+  width: 350px;
+  border-radius: 50%;
+  outline: 1px solid rgb(177, 0, 97);
+  outline-offset: 10px;
+  transition: 500ms;
 }
 
-.contract_model_img:hover{
-    transform: rotate(30deg);
+.contract_model_img:hover {
+  transform: rotate(30deg);
 }
-.contract_model_name{
-    color: rgb(177, 0, 97);
-    font-weight: bold;
-    font-size: 50px;
-    margin-top: 10px;
-    margin: 0;
+.contract_model_name {
+  color: rgb(177, 0, 97);
+  font-weight: bold;
+  font-size: 50px;
+  margin-top: 10px;
+  margin: 0;
 }
-.contract_model_about{
-    font-size: 13px;
-    margin: 0;
-    color: rgb(255, 0, 140);
+.contract_model_about {
+  font-size: 13px;
+  margin: 0;
+  color: rgb(255, 0, 140);
 }
-.contract_p{
-    font-weight: bold;
-    color: rgb(177, 0, 97);
-    margin: 0;
+.contract_p {
+  font-weight: bold;
+  color: rgb(177, 0, 97);
+  margin: 0;
 }
-.break_line{
-    color: rgb(255, 0, 140);
+.break_line {
+  color: rgb(255, 0, 140);
 }
-.brand_name{
-    font-weight: bold;
-    text-align: center;
+.brand_name {
+  font-weight: bold;
+  text-align: center;
 }
-.custom_button{
+.custom_button {
+  border: none;
+  border-radius: 20px;
+  padding: 5px 20px;
+  background-image: linear-gradient(-100deg, var(--primaryColor), var(--secondaryColor) );
+  /* background-color: rgb(2, 198, 109); */
+  outline: 1px solid rgb(0, 193, 145);
+  outline-offset: 2px;
+}
+.custom_button:hover {
+  background-color: rgba(0, 193, 145, 0.493);
+}
+.main_card {
+  border-radius: 20px !important;
+  outline: 1px solid rgb(83, 83, 83);
+  outline-offset: 10px;
+}
+.gig_card {
+  border-radius: 20px !important;
+}
+.auth_title {
+  font-weight: bold;
+  font-size: 100px;
+  color: white;
+}
+.auth_desc {
+  color: white;
+}
+.fnln {
+  /* width: 115%;; */
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(177, 177, 177);
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(153, 153, 153);
+}
+.search_for_gigs {
+  width: 150px;
+  transition: 500ms;
+  border-radius: 20px;
+}
+.search_for_gigs:focus {
+  width: 100%;
+}
+.select_specialty {
+  width: 150px;
+  float: right;
+  border-radius: 20px;
+}
+
+.nvb{
+    /* background-color: rgb(0, 193, 145)  !important; */
+  background-image: linear-gradient(100deg, var(--primaryColor), var(--secondaryColor) ) !important;
+
+    /* color: white !important; */
+}
+.nvi{
+    color: white !important;
+}
+.nvb_search{
+    background-color: rgba(255, 255, 255, 0.247) !important;
+    color: white !important;
     border-radius: 20px;
-    padding: 5px 20px;
-    outline: 1px solid black;
-    outline-offset: 3px;
 }
-.main_card{
-    border-radius: 20px !important;
-    outline: 1px solid rgb(83, 83, 83);
-    outline-offset: 10px;
-}
-.auth_title{
-    font-weight: bold;
-    font-size: 100px;
+.nvb_search::placeholder{
     color: white;
 }
-.auth_desc{
-color: white;
+.logout_div{
+    float: right !important;
 }
-.fnln{
-    /* width: 115%;; */
+.badge{
+    background-color: var(--primaryColor) !important;
+}
+.gigs_header{
+    background-color: white;
+    border-top-left-radius: 15px !important;
+    border-top-right-radius: 15px !important;
 }

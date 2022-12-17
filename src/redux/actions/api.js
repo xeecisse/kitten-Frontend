@@ -1,9 +1,7 @@
-// export const apiURL =
-//   process.env.NODE_ENV === "development"
-//     ? "http://localhost:43893/api"
-//     : "https://laloona-api.herokuapp.com/api";
-
-    export const apiURL = "https://laloona-api.herokuapp.com/api"
+export const apiURL =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:43893/api"
+    : "https://laloona-api.herokuapp.com/api";
 
 export const fetchApi = async (url) => {
   try {

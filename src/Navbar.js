@@ -14,6 +14,7 @@ import {
 } from "reactstrap";
 import { logout } from "./redux/actions/auth";
 import logo from "./img/laloona-pple.png";
+import CustomButton from "./components/UI/CustomButton";
 
 function NavbarComponent(args) {
   const user = useSelector((state) => state.auth.user);
@@ -34,14 +35,14 @@ function NavbarComponent(args) {
 
   return (
     <div>
-      <Navbar {...args}>
+      <Navbar {...args} className='nvb'>
         <NavbarBrand href="/" className="l">
           <img src={logo} style={{ height: 40 }} />
         </NavbarBrand>
 
         <div className="row mx-0">
           <Input
-            className="form-control my-1 col-md-12"
+            className="form-control my-1 col-md-12 nvb_search"
             placeholder="Search for jobs"
           />
         </div>
@@ -52,7 +53,7 @@ function NavbarComponent(args) {
             {user.id ? (
               <>
                 <NavItem>
-                  <NavLink
+                  <NavLink className='nvi'
                     href="#"
                     onClick={(e) => {
                       e.preventDefault();
@@ -65,7 +66,7 @@ function NavbarComponent(args) {
                 </NavItem>
 
                 <NavItem>
-                  <NavLink
+                  <NavLink className='nvi'
                     href="#"
                     onClick={(e) => {
                       e.preventDefault();
@@ -77,7 +78,7 @@ function NavbarComponent(args) {
                   </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink
+                  <NavLink className='nvi'
                     href="#"
                     onClick={(e) => {
                       e.preventDefault();
@@ -89,7 +90,7 @@ function NavbarComponent(args) {
                   </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink
+                  <NavLink className='nvi'
                     href="#"
                     onClick={(e) => {
                       e.preventDefault();
@@ -101,7 +102,7 @@ function NavbarComponent(args) {
                   </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink
+                  <NavLink className='nvi'
                     href="#"
                     onClick={(e) => {
                       e.preventDefault();
@@ -112,11 +113,14 @@ function NavbarComponent(args) {
                     Profile
                   </NavLink>
                 </NavItem>
-
-                <Button onClick={onLogout}>Logout</Button>
               </>
             ) : null}
           </Nav>
+          {user.id ? (
+            <div className="logout_div">
+              <CustomButton onClick={onLogout}>Logout</CustomButton>
+            </div>
+          ) : null}
         </Collapse>
       </Navbar>
     </div>
