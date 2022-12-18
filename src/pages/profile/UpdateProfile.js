@@ -69,7 +69,7 @@ export default function UpdateProfile({
         toggle={onClose}
       >
         <ModalHeader toggle={onClose}>
-          Edit your profile information
+          <h3 className='git_title'>Edit your profile information</h3>
         </ModalHeader>
         <ModalBody pb={6}>
           {/* {JSON.stringify(profileInfo)} */}

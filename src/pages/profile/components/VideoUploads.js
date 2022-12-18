@@ -60,7 +60,7 @@ export default function VideoUpload({ isOpen = false, toggle = (f) => f }) {
         isOpen={isOpen}
         toggle={toggle}
       >
-        <ModalHeader toggle={toggle}>Upload Videos</ModalHeader>
+        <ModalHeader toggle={toggle}>  <h3 className='git_title'>Upload Videos</h3></ModalHeader>
         <ModalBody pb={6}>
           <FormGroup>
             <label>Select Videos</label>

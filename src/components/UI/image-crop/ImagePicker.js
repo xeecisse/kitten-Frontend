@@ -11,6 +11,7 @@ import { useDebounceEffect } from './useDebounceEffect'
 
 import 'react-image-crop/dist/ReactCrop.css'
 import { Button } from 'reactstrap'
+import CustomButton from '../CustomButton'
 
 // This is to demonstate how to make and center a % aspect crop
 // which is a bit trickier so we use some helper functions.
@@ -255,7 +256,7 @@ export default function ImagePicker(props) {
           />
         </ReactCrop>
       )}
-      <Button
+      <CustomButton
         onClick={() =>{
           let timestamp = Date.now()
           getCroppedImg(imgRef.current, completedCrop, `cover_photo${timestamp}.jpg`).then(
@@ -271,7 +272,7 @@ export default function ImagePicker(props) {
         }}
       >
         Save
-      </Button>
+      </CustomButton>
       {/* <div>
         {saved && !!completedCrop && (
           <canvas

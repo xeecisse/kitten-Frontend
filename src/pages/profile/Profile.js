@@ -60,9 +60,12 @@ function Profile() {
       {/* <p className="text-white">
         {JSON.stringify({ notSelf, model_id, id: user.id })}
       </p> */}
-      <div className="container mt-3">
+      <Row className="m-0 p-0">
+        <Col md={2}></Col>
+        <Col md={8}>
+          <div className="container mt-3 p-3 shadow gig_card">
 
-        {/* <div className="row d-flex d-md-none">
+            {/* <div className="row d-flex d-md-none">
           <div className="offset-md-3 col-md-6 p-2">
             <img
               src={profileInfo.cover_image}
@@ -87,79 +90,78 @@ function Profile() {
               </div>
             </div> */}
 
-        <div className="row align-items-center my-1 my-xs-3 my-sm-3">
-          {/* <Card className="gig_card shadow"> */}
-          <Row>
-            <Col md={2}></Col>
-            <Col md={2}>
-
-              {/* <div className="offset-md-2 col-md-2 col-sm-2 d-none d-sm-flex d-md-flex d-lg-flex d-xl-flex">
-            <div> */}
-              <img
-                src={profileInfo.cover_image}
-                className="img-fluid rounded profile_image"
-                alt="cover_image"
-              />
-              <CustomButton
-                style={{ marginTop: 10, width: '100%' }}
-                onClick={() => setCoverImageUploadModalOpen(true)}
-              >
-                Update Image
-              </CustomButton>
-              {/* </div>
-          </div> */}
-            </Col>
-            <Col md={8}>
-
+            <div className="row align-items-center my-1 my-xs-3 my-sm-3">
+              {/* <Card className="gig_card shadow"> */}
               <Row className="">
-                <Col md={6}>
 
-                  <p className="username">
-                    {profileInfo.preferred_name}
-                    {/* ({getAgeFromDOB(profileInfo.dob)}) */}
-                  </p>
-                  <p className="fullname">
-                    {profileInfo.firstname} {profileInfo.lastname}
-                  </p>
-                  <p>
-                    {profileInfo.bio}
-                  </p>
-                  <p className="address">
-                    {profileInfo.state}, {profileInfo.country}
-                  </p>
-                </Col>
-                <Col md={6}>
+                <Col md={2}>
+
+                  {/* <div className="offset-md-2 col-md-2 col-sm-2 d-none d-sm-flex d-md-flex d-lg-flex d-xl-flex">
+            <div> */}
+                  <img
+                    src={profileInfo.cover_image}
+                    className="img-fluid rounded profile_image"
+                    alt="cover_image"
+                  />
                   <CustomButton
-
-                    className="mt-5"
-                    // onClick={() => navigate("/update-profile")}
-                    onClick={() => setEditModalOpen(true)}
+                    style={{ marginTop: 10, width: '100%' }}
+                    onClick={() => setCoverImageUploadModalOpen(true)}
                   >
-                    Edit Profile
+                    Update Image
                   </CustomButton>
-
-
+                  {/* </div>
+          </div> */}
                 </Col>
+                <Col md={10}>
 
+                  <Row className="">
+                    <Col md={6}>
+
+                      <p className="username">
+                        {profileInfo.preferred_name}
+                        {/* ({getAgeFromDOB(profileInfo.dob)}) */}
+                      </p>
+                      <p className="fullname">
+                        {profileInfo.firstname} {profileInfo.lastname}
+                      </p>
+                      <p>
+                        {profileInfo.bio}
+                      </p>
+                      <p className="address">
+                        {profileInfo.state}, {profileInfo.country}
+                      </p>
+                    </Col>
+                    <Col md={6}>
+                      <CustomButton
+
+                        className="mt-5"
+                        // onClick={() => navigate("/update-profile")}
+                        onClick={() => setEditModalOpen(true)}
+                      >
+                        Edit Profile
+                      </CustomButton>
+
+
+                    </Col>
+
+                  </Row>
+                </Col>
               </Row>
-            </Col>
-            <Col md={2}></Col>
-          </Row>
-          {/* </Card> */}
+              {/* </Card> */}
 
-        </div>
+            </div>
 
-        {/* <div className="text-center text-white">
+            {/* <div className="text-center text-white">
           xxx{JSON.stringify({ notSelf, model_id, id: user.id })}xxx
         </div> */}
 
-        {loading && (
-          <center>
-            <Spinner color="white" />
-          </center>
-        )}
+            {loading && (
+              <center>
+                <Spinner color="white" />
+              </center>
+            )}
 
-        {/* {notSelf ? null : (
+            {/* {notSelf ? null : (
           <div className="row">
             <div className="offset-md-2 col-md-8 d-flex flex-row justify-content-between my-1">
               <CustomButton
@@ -181,26 +183,28 @@ function Profile() {
           </div>
         )} */}
 
-        <div className="row mt-5">
-          <div className="offset-md-2 col-md-8">
-            <ProfileDetails notSelf={notSelf} profileInfo={profileInfo} />
+            <div className="row mt-5">
+              <div className="offset-md-2 col-md-8">
+                <ProfileDetails notSelf={notSelf} profileInfo={profileInfo} />
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
 
-      <UpdateProfile
-        isOpen={editModalIsOpen}
-        onClose={() => setEditModalOpen(false)}
-        onOpen={() => setEditModalOpen(true)}
-        profileInfo={profileInfo}
-      />
-      <CoverPhotoUpload
-        isOpen={coverImageUploadModalOpen}
-        toggle={() => setCoverImageUploadModalOpen((p) => !p)}
-        getProfileInfo={getProfileInfo}
-        profileInfo={profileInfo}
-      />
-
+          <UpdateProfile
+            isOpen={editModalIsOpen}
+            onClose={() => setEditModalOpen(false)}
+            onOpen={() => setEditModalOpen(true)}
+            profileInfo={profileInfo}
+          />
+          <CoverPhotoUpload
+            isOpen={coverImageUploadModalOpen}
+            toggle={() => setCoverImageUploadModalOpen((p) => !p)}
+            getProfileInfo={getProfileInfo}
+            profileInfo={profileInfo}
+          />
+        </Col>
+        <Col md={2}></Col>
+      </Row>
     </div>
   );
 }

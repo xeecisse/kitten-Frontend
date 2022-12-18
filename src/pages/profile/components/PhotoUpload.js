@@ -66,7 +66,7 @@ export default function PhotoUpload({
         onClose={onClose}
         toggle={onClose}
       >
-        <ModalHeader toggle={onClose}>Upload Photos</ModalHeader>
+        <ModalHeader toggle={onClose}>  <h3 className='git_title'>Upload Photos</h3></ModalHeader>
         <ModalBody pb={6}>
           <FormGroup>
             <label>Select Photos</label>

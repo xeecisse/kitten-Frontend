@@ -19,7 +19,7 @@ export default function CoverPhotoUpload({
   isOpen = false,
   toggle = (f) => f,
   getProfileInfo = (f) => f,
-  profileInfo={}
+  profileInfo = {}
 }) {
   // const profileInfo = useSelector((state) => state.auth.user)
   const initialRef = React.useRef(null)
@@ -64,7 +64,7 @@ export default function CoverPhotoUpload({
         isOpen={isOpen}
         toggle={toggle}
       >
-        <ModalHeader toggle={toggle}>Upload Cover Image</ModalHeader>
+        <ModalHeader toggle={toggle}><h3 className='git_title'>Upload Cover Image</h3></ModalHeader>
         <ModalBody pb={6}>
           {/* {JSON.stringify(photos)} */}
           {/* <FormGroup>

@@ -65,7 +65,7 @@ export default function AddPortfolio({
         isOpen={isOpen}
         toggle={toggle}
       >
-        <ModalHeader toggle={toggle}>Add Portfolio</ModalHeader>
+        <ModalHeader toggle={toggle}>  <h3 className='git_title'>Add Portfolio</h3></ModalHeader>
         <ModalBody pb={6}>
           <FormGroup>
             <label>Title</label>
