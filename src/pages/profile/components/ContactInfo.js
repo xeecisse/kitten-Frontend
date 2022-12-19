@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 import {
   Button,
   Collapse,
@@ -8,8 +8,9 @@ import {
   ModalBody,
   ModalFooter,
   ModalHeader,
-} from "reactstrap";
-import Collapsible from "./Collapsible";
+} from 'reactstrap'
+import Collapsible from './Collapsible'
+import { countryList } from './countryList'
 
 export default function ContactInfo({
   isOpen = false,
@@ -47,38 +48,43 @@ export default function ContactInfo({
           name="country"
         >
           <option>--Select--</option>
-          <option value={"Nigeria"}>Nigeria</option>
+          {countryList.map((c, i) => (
+            <option key={i}>{c}</option>
+          ))}
+          {/* <option value={"Nigeria"}>Nigeria</option> */}
         </select>
       </FormGroup>
+      {form.country === 'Nigeria' ? (
+        <>
+          <FormGroup mt={4}>
+            <label>State</label>
+            <select
+              className="form-control"
+              name="state"
+              value={form.state}
+              onChange={handleChange}
+            >
+              <option>--Select--</option>
+              <option value={'Kano'}>Kano</option>
+              <option value={'Abuja'}>Abuja</option>
+            </select>
+          </FormGroup>
 
-      <FormGroup mt={4}>
-        <label>State</label>
-        <select
-          className="form-control"
-          name="state"
-          value={form.state}
-          onChange={handleChange}
-        >
-          <option>--Select--</option>
-          <option value={"Kano"}>Kano</option>
-          <option value={"Abuja"}>Abuja</option>
-        </select>
-      </FormGroup>
-
-      <FormGroup mt={4}>
-        <label>Local Govt.</label>
-        <select
-          className="form-control"
-          name="lga"
-          value={form.lga}
-          onChange={handleChange}
-        >
-          <option>--Select--</option>
-          <option value={"Kura"}>Kura</option>
-          <option value={"Nassarawa"}>Nassarawa</option>
-        </select>
-      </FormGroup>
-
+          <FormGroup mt={4}>
+            <label>Local Govt.</label>
+            <select
+              className="form-control"
+              name="lga"
+              value={form.lga}
+              onChange={handleChange}
+            >
+              <option>--Select--</option>
+              <option value={'Kura'}>Kura</option>
+              <option value={'Nassarawa'}>Nassarawa</option>
+            </select>
+          </FormGroup>
+        </>
+      ) : null}
       <FormGroup mt={4}>
         <label>Contact Address</label>
         <Input
@@ -90,5 +96,5 @@ export default function ContactInfo({
         />
       </FormGroup>
     </Collapsible>
-  );
+  )
 }
