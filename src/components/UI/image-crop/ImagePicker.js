@@ -257,11 +257,11 @@ export default function ImagePicker(props) {
       )}
       <Button
         onClick={() =>
-          getCroppedImg(imgRef.current, completedCrop, 'cover_photo.jpg').then(
+          getCroppedImg(imgRef.current, completedCrop, `cover_photo_${Date.now()}.jpg`).then(
             (resp) => {
               //   console.log(resp)
               // const blobUrl = URL.createObjectURL(resp)
-              const file = new File([resp], 'cover_photo.jpg')
+              const file = new File([resp], `cover_photo_${Date.now()}.jpg`)
               //   console.log(blobUrl)
               props.onSave(file)
               setSaved(true)

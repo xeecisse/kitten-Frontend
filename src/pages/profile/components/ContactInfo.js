@@ -11,6 +11,8 @@ import {
 } from 'reactstrap'
 import Collapsible from './Collapsible'
 import { countryList } from './countryList'
+import SelectInput from '../../../components/UI/SelectInput'
+import { states } from './states'
 
 export default function ContactInfo({
   isOpen = false,
@@ -58,19 +60,16 @@ export default function ContactInfo({
         <>
           <FormGroup mt={4}>
             <label>State</label>
-            <select
+            <SelectInput
               className="form-control"
               name="state"
               value={form.state}
               onChange={handleChange}
-            >
-              <option>--Select--</option>
-              <option value={'Kano'}>Kano</option>
-              <option value={'Abuja'}>Abuja</option>
-            </select>
+              options={states}
+            />
           </FormGroup>
 
-          <FormGroup mt={4}>
+          {/* <FormGroup mt={4}>
             <label>Local Govt.</label>
             <select
               className="form-control"
@@ -82,7 +81,7 @@ export default function ContactInfo({
               <option value={'Kura'}>Kura</option>
               <option value={'Nassarawa'}>Nassarawa</option>
             </select>
-          </FormGroup>
+          </FormGroup> */}
         </>
       ) : null}
       <FormGroup mt={4}>
